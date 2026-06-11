@@ -2,6 +2,7 @@
 
 namespace Database\Seeders;
 
+use App\Models\MQInstanceState;
 use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
 
@@ -12,6 +13,9 @@ class MQInstanceStateSeeder extends Seeder
      */
     public function run(): void
     {
-        //
+        MQInstanceState::create(['name' => 'started']);
+        MQInstanceState::create(['name' => 'ended']);
+        // maybe more
+
     }
 }
