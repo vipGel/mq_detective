@@ -15,6 +15,7 @@ use Illuminate\Database\Eloquent\Relations\HasMany;
 class Role extends Model
 {
     public mixed $name;
+
     protected $fillable = [
         'name',
     ];

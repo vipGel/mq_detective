@@ -7,20 +7,19 @@ use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\Relations\HasMany;
 
 /**
- * MQCase class
+ * MQAddress class
  *
  * @param int $id
  * @param string $name
- * @param string $briefing
- * @param string $debriefing
+ * @param string $number
  * @param MQGenre $genre
+ * @param MQAddressObject $addressObject
  */
-class MQCase extends Model
+class MQAddress extends Model
 {
     protected $fillable = [
         'name',
-        'briefing',
-        'debriefing',
+        'number',
     ];
 
     public function genre(): BelongsTo
@@ -28,13 +27,13 @@ class MQCase extends Model
         return $this->belongsTo(MQGenre::class);
     }
 
-    public function questions(): HasMany
+    public function addressObject(): BelongsTo
     {
-        return $this->hasMany(MQQuestion::class);
+        return $this->belongsTo(MQAddressObject::class);
     }
 
-    public function tips(): HasMany
+    public function npcs(): HasMany
     {
-        return $this->hasMany(MQTips::class);
+        return $this->hasMany(MQAddressNpc::class);
     }
 }
