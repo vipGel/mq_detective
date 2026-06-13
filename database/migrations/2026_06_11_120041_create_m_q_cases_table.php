@@ -15,7 +15,7 @@ return new class extends Migration {
             $table->string('name');
             $table->mediumText('briefing');
             $table->mediumText('debriefing');
-            $table->foreignId('genre_id')
+            $table->foreignId('m_q_genre_id')
                 ->references('id')
                 ->on('m_q_genres')
                 ->onDelete('cascade');

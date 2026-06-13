@@ -15,7 +15,7 @@ return new class extends Migration {
             $table->string('hint');
             $table->string('clue');
             $table->integer('time');
-            $table->foreignId('case_id')
+            $table->foreignId('m_q_case_id')
                 ->references('id')
                 ->on('m_q_cases')
                 ->onDelete('cascade');

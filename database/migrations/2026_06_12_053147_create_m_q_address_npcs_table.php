@@ -18,7 +18,7 @@ return new class extends Migration {
                 ->references('id')
                 ->on('m_q_addresses')
                 ->onDelete('cascade');
-            $table->foreignId('case_id')
+            $table->foreignId('m_q_case_id')
                 ->references('id')
                 ->on('m_q_cases')
                 ->onDelete('cascade');

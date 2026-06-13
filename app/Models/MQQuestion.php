@@ -14,7 +14,7 @@ use Illuminate\Database\Eloquent\Relations\BelongsTo;
  * @param string $proof
  * @param integer $max_points
  * @param MQCase $case
- * @param MQQuestionPriority $questionPriority
+ * @param MQQuestionPriority $question_priority
  */
 class MQQuestion extends Model
 {
@@ -23,14 +23,18 @@ class MQQuestion extends Model
         'answer',
         'proof',
         'max_points',
+        'm_q_case_id',
+        'm_q_question_priority_id',
     ];
+
+    public $timestamps = false;
 
     public function case(): BelongsTo
     {
-        return $this->belongsTo(MQCase::class);
+        return $this->belongsTo(MQCase::class, 'm_q_case_id');
     }
-    public function questionPriority(): BelongsTo
+    public function question_priority(): BelongsTo
     {
-        return $this->belongsTo(MQQuestionPriority::class);
+        return $this->belongsTo(MQQuestionPriority::class, 'm_q_question_priority_id');
     }
 }

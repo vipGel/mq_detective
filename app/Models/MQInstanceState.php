@@ -15,4 +15,7 @@ class MQInstanceState extends Model
     protected $fillable = [
         'name',
     ];
+
+    public $timestamps = false;
+
 }

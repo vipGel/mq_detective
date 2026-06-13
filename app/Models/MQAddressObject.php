@@ -16,4 +16,6 @@ class MQAddressObject extends Model
     protected $fillable = [
         'name',
     ];
+    public $timestamps = false;
+
 }

@@ -16,11 +16,11 @@ return new class extends Migration
             $table->string('question');
             $table->string('answer');
             $table->string('proof');
-            $table->foreignId('case_id')
+            $table->foreignId('m_q_case_id')
                 ->references('id')
                 ->on('m_q_cases')
                 ->onDelete('cascade');
-            $table->foreignId('question_priority_id')
+            $table->foreignId('m_q_question_priority_id')
                 ->references('id')
                 ->on('m_q_question_priorities')
                 ->onDelete('no action');

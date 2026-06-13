@@ -15,4 +15,6 @@ class MQGenre extends Model
     protected $fillable = [
         'name',
     ];
+
+    public $timestamps = false;
 }

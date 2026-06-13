@@ -21,11 +21,15 @@ class MQCase extends Model
         'name',
         'briefing',
         'debriefing',
+        'm_q_genre_id',
     ];
+
+    public $timestamps = false;
+
 
     public function genre(): BelongsTo
     {
-        return $this->belongsTo(MQGenre::class);
+        return $this->belongsTo(MQGenre::class, 'm_q_genre_id');
     }
 
     public function questions(): HasMany

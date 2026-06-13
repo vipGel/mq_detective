@@ -18,15 +18,19 @@ class MQAddressNpc extends Model
 {
     protected $fillable = [
         'information',
+        'application_path',
+        'm_q_address_id',
+        'm_q_case_id',
     ];
+    public $timestamps = false;
 
     public function address(): BelongsTo
     {
-        return $this->belongsTo(MQAddress::class);
+        return $this->belongsTo(MQAddress::class, 'm_q_address_id');
     }
     public function case(): BelongsTo
     {
-        return $this->belongsTo(MQCase::class);
+        return $this->belongsTo(MQCase::class, 'm_q_case_id');
     }
 
     //TODO add access to application

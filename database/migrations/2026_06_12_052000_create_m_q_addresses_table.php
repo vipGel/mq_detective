@@ -15,11 +15,11 @@ return new class extends Migration
             $table->id();
             $table->string('name');
             $table->string('number');
-            $table->foreignId('address_object_id')
+            $table->foreignId('m_q_address_object_id')
                 ->references('id')
                 ->on('m_q_address_objects')
                 ->onDelete('cascade');
-            $table->foreignId('genre_id')
+            $table->foreignId('m_q_genre_id')
                 ->references('id')
                 ->on('m_q_genres')
                 ->onDelete('cascade');

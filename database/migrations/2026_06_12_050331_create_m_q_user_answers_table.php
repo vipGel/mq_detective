@@ -15,7 +15,7 @@ return new class extends Migration
             $table->id();
             $table->string('answer');
             $table->integer('points')->nullable();
-            $table->foreignId('question_id')
+            $table->foreignId('m_q_question_id')
                 ->references('id')
                 ->on('m_q_questions')
                 ->onDelete('cascade');
@@ -23,7 +23,7 @@ return new class extends Migration
                 ->references('id')
                 ->on('users')
                 ->onDelete('cascade');
-            $table->foreignId('instance_id')
+            $table->foreignId('m_q_case_instance_id')
                 ->references('id')
                 ->on('m_q_case_instances')
                 ->onDelete('cascade');
