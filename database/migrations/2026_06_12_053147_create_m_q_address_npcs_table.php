@@ -14,7 +14,7 @@ return new class extends Migration {
             $table->id();
             $table->string('information');
             $table->string('application_path')->nullable();
-            $table->foreignId('address_id')
+            $table->foreignId('m_q_address_id')
                 ->references('id')
                 ->on('m_q_addresses')
                 ->onDelete('cascade');

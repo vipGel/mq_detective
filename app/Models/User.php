@@ -75,4 +75,14 @@ class User extends Authenticatable
     {
         return $this->belongsToMany(MQAddress::class)->using(UserMQAddressMQCaseInstance::class);
     }
+
+    public function instances(): BelongsToMany
+    {
+        return $this->belongsToMany(
+            MQCaseInstance::class,
+            'user_m_q_case_instance',
+            'user_id',
+            'm_q_case_instance_id'
+        );
+    }
 }

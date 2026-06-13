@@ -31,12 +31,12 @@ class NpcsRelationManager extends RelationManager
                     ->required(),
                 TextInput::make('application_path')
                     ->default(null),
-                Select::make('address_id')
-                    ->relationship('address', 'name')
+//                Select::make('address_id')
+//                    ->relationship('address', 'name')
+//                    ->required(),
+                Select::make('m_q_case_id')
+                    ->relationship('case', 'name')
                     ->required(),
-                TextInput::make('m_q_case_id')
-                    ->required()
-                    ->numeric(),
             ]);
     }
 
@@ -47,10 +47,9 @@ class NpcsRelationManager extends RelationManager
                 TextEntry::make('information'),
                 TextEntry::make('application_path')
                     ->placeholder('-'),
-                TextEntry::make('address.name')
-                    ->label('Address'),
-                TextEntry::make('m_q_case_id')
-                    ->numeric(),
+//                TextEntry::make('address.name')
+//                    ->label('Address'),
+                TextEntry::make('case.name'),
             ]);
     }
 
@@ -63,10 +62,7 @@ class NpcsRelationManager extends RelationManager
                     ->searchable(),
                 TextColumn::make('application_path')
                     ->searchable(),
-                TextColumn::make('address.name')
-                    ->searchable(),
-                TextColumn::make('m_q_case_id')
-                    ->numeric()
+                TextColumn::make('case.name')
                     ->sortable(),
             ])
             ->filters([

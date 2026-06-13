@@ -20,7 +20,9 @@ class MQCaseInstance extends Model
     protected $fillable = [
         'name',
         'team_points',
+        'admin_id',
         'm_q_case_id',
+        'm_q_instance_state_id',
     ];
 
     //TODO make a function to calculate $team_points
@@ -40,8 +42,13 @@ class MQCaseInstance extends Model
         return $this->belongsTo(MQInstanceState::class, 'm_q_case_id');
     }
 
-    public function users(): HasMany
+    public function users(): BelongsToMany
     {
-        return $this->HasMany(User::class);
+        return $this->belongsToMany(
+            User::class,
+            'user_m_q_case_instance',
+            'm_q_case_instance_id',
+            'user_id'
+        );
     }
 }
