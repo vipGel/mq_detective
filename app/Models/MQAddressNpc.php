@@ -24,11 +24,11 @@ class MQAddressNpc extends Model
     ];
     public $timestamps = false;
 
-    public function address(): BelongsTo
+    public function mQAddress(): BelongsTo
     {
         return $this->belongsTo(MQAddress::class, 'm_q_address_id');
     }
-    public function case(): BelongsTo
+    public function mQCase(): BelongsTo
     {
         return $this->belongsTo(MQCase::class, 'm_q_case_id');
     }

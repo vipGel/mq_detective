@@ -18,7 +18,7 @@ use Filament\Tables\Table;
 
 class TipsRelationManager extends RelationManager
 {
-    protected static string $relationship = 'tips';
+    protected static string $relationship = 'mQTips';
 
     public function form(Schema $schema): Schema
     {

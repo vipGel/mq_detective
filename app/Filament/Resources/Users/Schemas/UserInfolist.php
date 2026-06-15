@@ -1,25 +1,24 @@
 <?php
 
-namespace App\Filament\Resources\MQCaseInstances\Schemas;
+namespace App\Filament\Resources\Users\Schemas;
 
 use Filament\Infolists\Components\TextEntry;
 use Filament\Schemas\Schema;
 
-class MQCaseInstanceInfolist
+class UserInfolist
 {
     public static function configure(Schema $schema): Schema
     {
         return $schema
             ->components([
-                TextEntry::make('name')
+                TextEntry::make('name'),
+                TextEntry::make('email')
+                    ->label('Email address'),
+                TextEntry::make('email_verified_at')
+                    ->dateTime()
                     ->placeholder('-'),
-                TextEntry::make('team_points')
-                    ->numeric()
+                TextEntry::make('roles.name')
                     ->placeholder('-'),
-                TextEntry::make('mQCase.name'),
-                TextEntry::make('admin.name')
-                    ->label('Admin'),
-                TextEntry::make('mQInstanceState.name'),
                 TextEntry::make('created_at')
                     ->dateTime()
                     ->placeholder('-'),

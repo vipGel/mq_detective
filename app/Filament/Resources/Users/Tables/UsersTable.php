@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Filament\Resources\MQCaseInstances\Tables;
+namespace App\Filament\Resources\Users\Tables;
 
 use Filament\Actions\BulkActionGroup;
 use Filament\Actions\DeleteBulkAction;
@@ -9,7 +9,7 @@ use Filament\Actions\ViewAction;
 use Filament\Tables\Columns\TextColumn;
 use Filament\Tables\Table;
 
-class MQCaseInstancesTable
+class UsersTable
 {
     public static function configure(Table $table): Table
     {
@@ -17,17 +17,14 @@ class MQCaseInstancesTable
             ->columns([
                 TextColumn::make('name')
                     ->searchable(),
-                TextColumn::make('team_points')
-                    ->numeric()
-                    ->sortable(),
-                TextColumn::make('m_q_case_id')
-                    ->numeric()
-                    ->sortable()->label('Case'),
-                TextColumn::make('admin.name')
+                TextColumn::make('email')
+                    ->label('Email address')
                     ->searchable(),
-                TextColumn::make('m_q_instance_state_id')
-                    ->numeric()
-                    ->sortable()->label('Case Instance State'),
+                TextColumn::make('email_verified_at')
+                    ->dateTime()
+                    ->sortable(),
+                TextColumn::make('roles.name')
+                    ->sortable(),
                 TextColumn::make('created_at')
                     ->dateTime()
                     ->sortable()

@@ -11,6 +11,7 @@ use Illuminate\Database\Eloquent\Relations\HasMany;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
 use Illuminate\Support\Arr;
+use Spatie\Permission\Traits\HasRoles;
 
 /**
  * User class
@@ -18,12 +19,12 @@ use Illuminate\Support\Arr;
  * @param int $id
  * @param string $name
  * @param string $email
- * @param Role $role
+// * @param Role $role
  */
 class User extends Authenticatable
 {
     /** @use HasFactory<UserFactory> */
-    use HasFactory, Notifiable;
+    use HasFactory, Notifiable, HasRoles;
 
     /**
      * The attributes that are mass assignable.
@@ -34,7 +35,7 @@ class User extends Authenticatable
         'name',
         'email',
         'password',
-        'role_id',
+//        'role_id',
     ];
 
     /**
@@ -46,7 +47,6 @@ class User extends Authenticatable
         'password',
         'remember_token',
     ];
-    private Role $role;
 
     /**
      * Get the attributes that should be cast.
@@ -61,22 +61,22 @@ class User extends Authenticatable
         ];
     }
 
-    public function role(): BelongsTo
-    {
-        return $this->belongsTo(Role::class);
-    }
+//    public function role(): BelongsTo
+//    {
+//        return $this->belongsTo(Role::class);
+//    }
 
-    public function hasRole(string|array $roles): bool
-    {
-        return in_array($this->role->name, Arr::wrap($roles));
-    }
+//    public function hasRole(string|array $roles): bool
+//    {
+//        return in_array($this->role->name, Arr::wrap($roles));
+//    }
 
-    public function addresses(): BelongsToMany
+    public function mQAddresses(): BelongsToMany
     {
         return $this->belongsToMany(MQAddress::class)->using(UserMQAddressMQCaseInstance::class);
     }
 
-    public function instances(): BelongsToMany
+    public function mQCaseInstances(): BelongsToMany
     {
         return $this->belongsToMany(
             MQCaseInstance::class,

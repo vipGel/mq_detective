@@ -28,7 +28,7 @@ class MQUserAnswer extends Model
 
     //TODO make $points to be filled only by team admin
 
-    public function question(): BelongsTo
+    public function mQQuestion(): BelongsTo
     {
         return $this->belongsTo(MQQuestion::class, 'm_q_question_id');
     }
@@ -38,7 +38,7 @@ class MQUserAnswer extends Model
         return $this->belongsTo(User::class);
     }
 
-    public function instance(): BelongsTo
+    public function mQCaseInstance(): BelongsTo
     {
         return $this->belongsTo(MQCaseInstance::class, 'm_q_instance_id');
     }

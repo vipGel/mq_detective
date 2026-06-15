@@ -27,17 +27,17 @@ class MQCase extends Model
     public $timestamps = false;
 
 
-    public function genre(): BelongsTo
+    public function mQGenre(): BelongsTo
     {
         return $this->belongsTo(MQGenre::class, 'm_q_genre_id');
     }
 
-    public function questions(): HasMany
+    public function mQQuestions(): HasMany
     {
         return $this->hasMany(MQQuestion::class);
     }
 
-    public function tips(): HasMany
+    public function mQTips(): HasMany
     {
         return $this->hasMany(MQTips::class);
     }

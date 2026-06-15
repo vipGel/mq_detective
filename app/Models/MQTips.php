@@ -28,7 +28,7 @@ class MQTips extends Model
 
     //TODO figure out how to make $time
 
-    public function case(): BelongsTo
+    public function mQCase(): BelongsTo
     {
         return $this->belongsTo(MQCase::class, 'm_q_case_id');
     }

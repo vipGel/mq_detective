@@ -17,11 +17,13 @@ class MQAddressForm
                 TextInput::make('number')
                     ->required(),
                 Select::make('m_q_address_object_id')
-                    ->relationship('addressObject', 'name')
-                    ->required(),
+                    ->relationship('mQAddressObject', 'name')
+                    ->required()
+                    ->label('Address Object'),
                 Select::make('m_q_genre_id')
-                    ->relationship('genre', 'name')
-                    ->required(),
+                    ->relationship('mQGenre', 'name')
+                    ->required()
+                    ->label('Genre'),
             ]);
     }
 }

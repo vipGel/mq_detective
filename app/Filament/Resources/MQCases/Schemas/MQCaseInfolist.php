@@ -17,7 +17,7 @@ class MQCaseInfolist
                 TextEntry::make('debriefing')
                     ->columnSpanFull(),
                 TextEntry::make('m_q_genre.name')
-                    ->label('M q genre'),
+                    ->label('Genre'),
             ]);
     }
 }

@@ -21,7 +21,7 @@ use Filament\Tables\Table;
 
 class QuestionsRelationManager extends RelationManager
 {
-    protected static string $relationship = 'questions';
+    protected static string $relationship = 'mQQuestions';
 
     public function form(Schema $schema): Schema
     {
@@ -34,8 +34,8 @@ class QuestionsRelationManager extends RelationManager
                 TextInput::make('proof')
                     ->required(),
                 Select::make('m_q_question_priority_id')
-                    ->relationship('question_priority', 'name')
-                    ->required(),
+                    ->relationship('mQQuestionPriority', 'name')
+                    ->required()->label('Question Priority'),
                 TextInput::make('max_points')
                     ->required()
                     ->numeric(),
@@ -49,7 +49,7 @@ class QuestionsRelationManager extends RelationManager
                 TextEntry::make('question'),
                 TextEntry::make('answer'),
                 TextEntry::make('proof'),
-                TextEntry::make('question_priority.name'),
+                TextEntry::make('mQQuestionPriority.name')->label('Question Priority'),
                 TextEntry::make('max_points')
                     ->numeric(),
             ]);
@@ -66,8 +66,8 @@ class QuestionsRelationManager extends RelationManager
                     ->searchable(),
                 TextColumn::make('proof')
                     ->searchable(),
-                TextColumn::make('question_priority.name')
-                    ->sortable(),
+                TextColumn::make('mQQuestionPriority.name')
+                    ->sortable()->label('Question Priority'),
                 TextColumn::make('max_points')
                     ->numeric()
                     ->sortable(),

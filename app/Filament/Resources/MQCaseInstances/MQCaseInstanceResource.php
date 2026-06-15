@@ -6,6 +6,7 @@ use App\Filament\Resources\MQCaseInstances\Pages\CreateMQCaseInstance;
 use App\Filament\Resources\MQCaseInstances\Pages\EditMQCaseInstance;
 use App\Filament\Resources\MQCaseInstances\Pages\ListMQCaseInstances;
 use App\Filament\Resources\MQCaseInstances\Pages\ViewMQCaseInstance;
+use App\Filament\Resources\MQCaseInstances\RelationManagers\UsersRelationManager;
 use App\Filament\Resources\MQCaseInstances\Schemas\MQCaseInstanceForm;
 use App\Filament\Resources\MQCaseInstances\Schemas\MQCaseInstanceInfolist;
 use App\Filament\Resources\MQCaseInstances\Tables\MQCaseInstancesTable;
@@ -44,6 +45,7 @@ class MQCaseInstanceResource extends Resource
     public static function getRelations(): array
     {
         return [
+            UsersRelationManager::class,
         ];
     }
 

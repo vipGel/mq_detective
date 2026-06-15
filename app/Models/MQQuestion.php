@@ -29,11 +29,11 @@ class MQQuestion extends Model
 
     public $timestamps = false;
 
-    public function case(): BelongsTo
+    public function mQCase(): BelongsTo
     {
         return $this->belongsTo(MQCase::class, 'm_q_case_id');
     }
-    public function question_priority(): BelongsTo
+    public function mQQuestionPriority(): BelongsTo
     {
         return $this->belongsTo(MQQuestionPriority::class, 'm_q_question_priority_id');
     }

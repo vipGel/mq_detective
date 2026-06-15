@@ -13,12 +13,12 @@ class UserMQAddressMQCaseInstance extends Pivot
         return $this->belongsTo(User::class);
     }
 
-    public function address(): BelongsTo
+    public function mQAddress(): BelongsTo
     {
         return $this->belongsTo(MQAddress::class, 'm_q_address_id');
     }
 
-    public function instance(): BelongsTo
+    public function mQCaseInstance(): BelongsTo
     {
         return $this->belongsTo(MQCaseInstance::class, 'm_q_case_instance_id');
     }

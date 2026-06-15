@@ -28,24 +28,24 @@ class MQAddress extends Model
 
     public $timestamps = false;
 
-    public function genre(): BelongsTo
+    public function mQGenre(): BelongsTo
     {
         return $this->belongsTo(MQGenre::class, 'm_q_genre_id');
     }
 
-    public function addressObject(): BelongsTo
+    public function mQAddressObject(): BelongsTo
     {
         return $this->belongsTo(MQAddressObject::class, 'm_q_address_object_id');
     }
 
-    public function npcs(): HasMany
+    public function mQNpcs(): HasMany
     {
         return $this->hasMany(MQAddressNpc::class);
     }
 
     public function hasNpc(int $case_id): bool
     {
-        return $this->npcs()->where('m_q_case_id', $case_id)->exists();
+        return $this->mQNpcs()->where('m_q_case_id', $case_id)->exists();
     }
 
     public function users(): BelongsToMany

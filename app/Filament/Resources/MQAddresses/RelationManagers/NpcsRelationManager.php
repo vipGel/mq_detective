@@ -21,7 +21,7 @@ use Filament\Tables\Table;
 
 class NpcsRelationManager extends RelationManager
 {
-    protected static string $relationship = 'npcs';
+    protected static string $relationship = 'mQNpcs';
 
     public function form(Schema $schema): Schema
     {
@@ -35,8 +35,9 @@ class NpcsRelationManager extends RelationManager
 //                    ->relationship('address', 'name')
 //                    ->required(),
                 Select::make('m_q_case_id')
-                    ->relationship('case', 'name')
-                    ->required(),
+                    ->relationship('mQCase', 'name')
+                    ->required()
+                    ->label('Case'),
             ]);
     }
 
@@ -49,7 +50,7 @@ class NpcsRelationManager extends RelationManager
                     ->placeholder('-'),
 //                TextEntry::make('address.name')
 //                    ->label('Address'),
-                TextEntry::make('case.name'),
+                TextEntry::make('mQCase.name'),
             ]);
     }
 
@@ -62,25 +63,25 @@ class NpcsRelationManager extends RelationManager
                     ->searchable(),
                 TextColumn::make('application_path')
                     ->searchable(),
-                TextColumn::make('case.name')
-                    ->sortable(),
+                TextColumn::make('mQCase.name')
+                    ->sortable()->label('Case'),
             ])
             ->filters([
                 //
             ])
             ->headerActions([
-                CreateAction::make(),
-                AssociateAction::make(),
+                CreateAction::make()->label('Create NPC'),
+//                AssociateAction::make(),
             ])
             ->recordActions([
                 ViewAction::make(),
                 EditAction::make(),
-                DissociateAction::make(),
+//                DissociateAction::make(),
                 DeleteAction::make(),
             ])
             ->toolbarActions([
                 BulkActionGroup::make([
-                    DissociateBulkAction::make(),
+//                    DissociateBulkAction::make(),
                     DeleteBulkAction::make(),
                 ]),
             ]);

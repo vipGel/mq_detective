@@ -22,7 +22,7 @@ class MQCaseForm
                     ->required()
                     ->columnSpanFull(),
                 Select::make('m_q_genre_id')
-                    ->relationship('genre', 'name')
+                    ->relationship('mQGenre', 'name')
                     ->required(),
             ]);
     }

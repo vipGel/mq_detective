@@ -20,10 +20,12 @@ class MQAddressesTable
                     ->searchable(),
                 TextColumn::make('m_q_address_object_id')
                     ->numeric()
-                    ->sortable(),
+                    ->sortable()
+                    ->label('Address Object'),
                 TextColumn::make('m_q_genre_id')
                     ->numeric()
-                    ->sortable(),
+                    ->sortable()
+                    ->label('Genre'),
             ])
             ->filters([
                 //

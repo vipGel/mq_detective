@@ -18,16 +18,16 @@ class MQCaseInstanceForm
                     ->numeric()
                     ->default(null),
                 Select::make('m_q_case_id')
-                    ->relationship('case', 'name')
+                    ->relationship('mQCase', 'name')
                     ->searchable()
-                    ->required(),
-                Select::make('admin_id')
-                    ->relationship('admin', 'name')
-                    ->searchable()
-                    ->required(),
+                    ->required()->label('Case'),
+//                Select::make('admin_id')
+//                    ->relationship('admin', 'name')
+//                    ->searchable()
+//                    ->required(),
                 Select::make('m_q_instance_state_id')
-                    ->relationship('state', 'name')
-                    ->required(),
+                    ->relationship('mQInstanceState', 'name')
+                    ->required()->label('Case Instance State'),
             ]);
     }
 }

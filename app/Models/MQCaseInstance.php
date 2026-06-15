@@ -2,10 +2,10 @@
 
 namespace App\Models;
 
+use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\Relations\BelongsToMany;
-use Illuminate\Database\Eloquent\Relations\HasMany;
 
 /**
  * MQCaseInstance class
@@ -25,9 +25,10 @@ class MQCaseInstance extends Model
         'm_q_instance_state_id',
     ];
 
+//    public int $id;
     //TODO make a function to calculate $team_points
 
-    public function case(): BelongsTo
+    public function mQCase(): BelongsTo
     {
         return $this->belongsTo(MQCase::class, 'm_q_case_id');
     }
@@ -37,7 +38,7 @@ class MQCaseInstance extends Model
         return $this->belongsTo(User::class);
     }
 
-    public function state(): BelongsTo
+    public function mQInstanceState(): BelongsTo
     {
         return $this->belongsTo(MQInstanceState::class, 'm_q_case_id');
     }
@@ -51,4 +52,15 @@ class MQCaseInstance extends Model
             'user_id'
         );
     }
+
+//    public static function getEloquentQuery(): Builder
+//    {
+//        $query = parent::getEloquentQuery();
+//
+//        if (auth()->user()->hasRole('super_admin')) {
+//            return $query;
+//        }
+//
+//        return $query->where('admin_id', auth()->id());
+//    }
 }
