@@ -19,11 +19,13 @@ class MQAddressResource extends Resource
 {
     protected static ?string $model = MQAddress::class;
 
-    protected static string|BackedEnum|null $navigationIcon = Heroicon::OutlinedRectangleStack;
+    protected static string|BackedEnum|null $navigationIcon = Heroicon::HomeModern;
 
     protected static ?string $recordTitleAttribute = 'name';
 
     protected static ?string $label = 'Addresses';
+
+    protected static string|null|\UnitEnum $navigationGroup = 'Cases';
 
     public static function form(Schema $schema): Schema
     {

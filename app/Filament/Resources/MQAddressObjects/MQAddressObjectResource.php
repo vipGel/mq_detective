@@ -18,7 +18,7 @@ class MQAddressObjectResource extends Resource
 {
     protected static ?string $model = MQAddressObject::class;
 
-    protected static string|BackedEnum|null $navigationIcon = Heroicon::OutlinedRectangleStack;
+    protected static string|BackedEnum|null $navigationIcon = Heroicon::MapPin;
 
     protected static ?string $recordTitleAttribute = 'name';
 

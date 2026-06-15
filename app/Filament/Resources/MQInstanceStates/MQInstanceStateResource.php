@@ -18,7 +18,7 @@ class MQInstanceStateResource extends Resource
 {
     protected static ?string $model = MQInstanceState::class;
 
-    protected static string|BackedEnum|null $navigationIcon = Heroicon::OutlinedRectangleStack;
+    protected static string|BackedEnum|null $navigationIcon = Heroicon::Signal;
 
     protected static ?string $recordTitleAttribute = 'name';
 

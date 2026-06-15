@@ -18,7 +18,7 @@ class MQGenreResource extends Resource
 {
     protected static ?string $model = MQGenre::class;
 
-    protected static string|BackedEnum|null $navigationIcon = Heroicon::OutlinedRectangleStack;
+    protected static string|BackedEnum|null $navigationIcon = Heroicon::Tag;
 
     protected static ?string $recordTitleAttribute = 'name';
     protected static string|null|\UnitEnum $navigationGroup = 'Static';

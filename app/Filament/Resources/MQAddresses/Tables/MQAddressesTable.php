@@ -18,12 +18,10 @@ class MQAddressesTable
                     ->searchable(),
                 TextColumn::make('number')
                     ->searchable(),
-                TextColumn::make('m_q_address_object_id')
-                    ->numeric()
+                TextColumn::make('mQAddressObject.name')
                     ->sortable()
                     ->label('Address Object'),
-                TextColumn::make('m_q_genre_id')
-                    ->numeric()
+                TextColumn::make('mQGenre.name')
                     ->sortable()
                     ->label('Genre'),
             ])

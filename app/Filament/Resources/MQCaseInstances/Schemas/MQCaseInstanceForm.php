@@ -20,7 +20,9 @@ class MQCaseInstanceForm
                 Select::make('m_q_case_id')
                     ->relationship('mQCase', 'name')
                     ->searchable()
-                    ->required()->label('Case'),
+                    ->required()
+                    ->label('Case')
+                    ->disabledOn('edit'),
 //                Select::make('admin_id')
 //                    ->relationship('admin', 'name')
 //                    ->searchable()

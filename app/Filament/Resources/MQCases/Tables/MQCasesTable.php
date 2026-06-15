@@ -17,8 +17,8 @@ class MQCasesTable
             ->columns([
                 TextColumn::make('name')
                     ->searchable(),
-                TextColumn::make('m_q_genre.name')
-                    ->searchable(),
+                TextColumn::make('mQGenre.name')
+                    ->searchable()->label('Genre'),
             ])
             ->filters([
                 //

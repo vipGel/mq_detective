@@ -22,12 +22,13 @@ class MQCaseResource extends Resource
 {
     protected static ?string $model = MQCase::class;
 
-    protected static string|BackedEnum|null $navigationIcon = Heroicon::OutlinedRectangleStack;
+    protected static string|BackedEnum|null $navigationIcon = Heroicon::FolderOpen;
 
     protected static ?string $recordTitleAttribute = 'name';
 
     protected static ?string $label = 'Cases';
 
+    protected static string|null|\UnitEnum $navigationGroup = 'Cases';
 
     public static function form(Schema $schema): Schema
     {

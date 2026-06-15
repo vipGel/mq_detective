@@ -20,12 +20,11 @@ class MQCaseInstancesTable
                 TextColumn::make('team_points')
                     ->numeric()
                     ->sortable(),
-                TextColumn::make('m_q_case_id')
-                    ->numeric()
+                TextColumn::make('mQCase.name')
                     ->sortable()->label('Case'),
                 TextColumn::make('admin.name')
                     ->searchable(),
-                TextColumn::make('m_q_instance_state_id')
+                TextColumn::make('mQInstanceState.name')
                     ->numeric()
                     ->sortable()->label('Case Instance State'),
                 TextColumn::make('created_at')
