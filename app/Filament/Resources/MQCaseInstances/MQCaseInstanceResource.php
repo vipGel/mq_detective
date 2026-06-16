@@ -16,6 +16,7 @@ use Filament\Resources\Resource;
 use Filament\Schemas\Schema;
 use Filament\Support\Icons\Heroicon;
 use Filament\Tables\Table;
+use Illuminate\Database\Eloquent\Builder;
 
 class MQCaseInstanceResource extends Resource
 {
@@ -59,5 +60,16 @@ class MQCaseInstanceResource extends Resource
             'view' => ViewMQCaseInstance::route('/{record}'),
             'edit' => EditMQCaseInstance::route('/{record}/edit'),
         ];
+    }
+
+    public static function getEloquentQuery(): Builder
+    {
+        $query = parent::getEloquentQuery();
+
+        if (auth()->user()->hasRole('super_admin')) {
+            return $query;
+        }
+
+        return $query->where('admin_id', auth()->id());
     }
 }

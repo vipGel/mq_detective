@@ -17,9 +17,17 @@ use Filament\Resources\RelationManagers\RelationManager;
 use Filament\Schemas\Schema;
 use Filament\Tables\Columns\TextColumn;
 use Filament\Tables\Table;
+use Illuminate\Database\Eloquent\Model;
 
 class UsersRelationManager extends RelationManager
 {
+
+    public static function canViewForRecord(Model $ownerRecord, string $pageClass): bool
+    {
+        return auth()->id() === $ownerRecord->admin_id
+            || auth()->user()->hasRole('super_admin');
+    }
+
     protected static string $relationship = 'users';
 
 //    public function form(Schema $schema): Schema
