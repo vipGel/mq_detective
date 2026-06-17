@@ -14,6 +14,7 @@ return new class extends Migration
         Schema::create('m_q_addresses', function (Blueprint $table) {
             $table->id();
             $table->string('name');
+            $table->string('letter');
             $table->string('number');
             $table->foreignId('m_q_address_object_id')
                 ->references('id')

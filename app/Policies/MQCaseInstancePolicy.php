@@ -11,7 +11,7 @@ use Illuminate\Auth\Access\HandlesAuthorization;
 class MQCaseInstancePolicy
 {
     use HandlesAuthorization;
-
+    
     public function viewAny(AuthUser $authUser): bool
     {
         return $authUser->can('ViewAny:MQCaseInstance');
@@ -19,11 +19,7 @@ class MQCaseInstancePolicy
 
     public function view(AuthUser $authUser, MQCaseInstance $mQCaseInstance): bool
     {
-//        return $authUser->can('View:MQCaseInstance');
-        if (auth()->user()->hasRole('super_admin')) {
-            return true;
-        }
-        return $authUser->id == $mQCaseInstance->admin()->first()->id;
+        return $authUser->can('View:MQCaseInstance');
     }
 
     public function create(AuthUser $authUser): bool
@@ -33,20 +29,12 @@ class MQCaseInstancePolicy
 
     public function update(AuthUser $authUser, MQCaseInstance $mQCaseInstance): bool
     {
-        if (auth()->user()->hasRole('super_admin')) {
-            return true;
-        }
-        return $authUser->id == $mQCaseInstance->admin()->first()->id;
-//        return $authUser->can('Update:MQCaseInstance');
+        return $authUser->can('Update:MQCaseInstance');
     }
 
     public function delete(AuthUser $authUser, MQCaseInstance $mQCaseInstance): bool
     {
-        if (auth()->user()->hasRole('super_admin')) {
-            return true;
-        }
-        return $authUser->id == $mQCaseInstance->admin()->first()->id;
-//        return $authUser->can('Delete:MQCaseInstance');
+        return $authUser->can('Delete:MQCaseInstance');
     }
 
     public function deleteAny(AuthUser $authUser): bool

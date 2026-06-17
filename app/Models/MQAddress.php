@@ -13,6 +13,7 @@ use Illuminate\Database\Eloquent\Relations\HasOne;
  *
  * @param int $id
  * @param string $name
+ * @param string $letter
  * @param string $number
  * @param MQGenre $genre
  * @param MQAddressObject $addressObject
@@ -21,6 +22,7 @@ class MQAddress extends Model
 {
     protected $fillable = [
         'name',
+        'letter',
         'number',
         'm_q_genre_id',
         'm_q_address_object_id',

@@ -14,6 +14,8 @@ class MQAddressForm
             ->components([
                 TextInput::make('name')
                     ->required(),
+                TextInput::make('letter')
+                    ->required(),
                 TextInput::make('number')
                     ->required(),
                 Select::make('m_q_address_object_id')

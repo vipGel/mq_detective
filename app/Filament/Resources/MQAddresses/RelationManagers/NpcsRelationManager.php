@@ -61,8 +61,8 @@ class NpcsRelationManager extends RelationManager
             ->columns([
                 TextColumn::make('information')
                     ->searchable(),
-                TextColumn::make('application_path')
-                    ->searchable(),
+//                TextColumn::make('application_path')
+//                    ->searchable(),
                 TextColumn::make('mQCase.name')
                     ->sortable()->label('Case'),
             ])

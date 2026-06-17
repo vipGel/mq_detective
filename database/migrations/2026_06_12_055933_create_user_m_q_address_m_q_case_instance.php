@@ -24,6 +24,7 @@ return new class extends Migration
                 ->references('id')
                 ->on('m_q_addresses')
                 ->onDelete('cascade');
+            $table->unique(['user_id', 'm_q_case_instance_id', 'm_q_address_id']);
         });
     }
 

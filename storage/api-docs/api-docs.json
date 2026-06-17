@@ -1,0 +1,172 @@
+{
+    "openapi": "3.0.0",
+    "info": {
+        "title": "API Docs",
+        "description": "Multi Quest API Documentation",
+        "version": "0.0.1"
+    },
+    "servers": [
+        {
+            "url": "http://localhost:8000",
+            "description": "Local Development Server"
+        }
+    ],
+    "paths": {
+        "/api/login": {
+            "post": {
+                "tags": [
+                    "Auth"
+                ],
+                "summary": "User login",
+                "operationId": "eaf331834ce7ca6883e34c6a123c1c1e",
+                "requestBody": {
+                    "required": true,
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "required": [
+                                    "email",
+                                    "password"
+                                ],
+                                "properties": {
+                                    "email": {
+                                        "type": "string",
+                                        "format": "email",
+                                        "example": "test@test.com"
+                                    },
+                                    "password": {
+                                        "type": "string",
+                                        "example": "12345678"
+                                    }
+                                },
+                                "type": "object"
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "200": {
+                        "description": "Successful operation"
+                    },
+                    "401": {
+                        "description": "Invalid credentials"
+                    }
+                }
+            }
+        },
+        "/api/addresses/{genre_id}": {
+            "get": {
+                "tags": [
+                    "Addresses"
+                ],
+                "summary": "Get a list of addresses of a genre",
+                "operationId": "6e6aedb490b0565e25eb9ba6cfbfdc4e",
+                "parameters": [
+                    {
+                        "name": "genre_id",
+                        "in": "path",
+                        "description": "Genre ID",
+                        "required": true,
+                        "schema": {
+                            "type": "integer"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Successful operation"
+                    }
+                }
+            }
+        },
+        "/api/address_letters/{genre_id}": {
+            "get": {
+                "tags": [
+                    "Addresses"
+                ],
+                "summary": "Get a list of address letter of a genre",
+                "operationId": "3fb33c5155f474647ceede27692e9956",
+                "parameters": [
+                    {
+                        "name": "genre_id",
+                        "in": "path",
+                        "description": "Genre ID",
+                        "required": true,
+                        "schema": {
+                            "type": "integer"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Successful operation"
+                    }
+                }
+            }
+        },
+        "/api/address/{genre_id}": {
+            "get": {
+                "tags": [
+                    "Addresses"
+                ],
+                "summary": "Get an exact address",
+                "operationId": "fd419200d38d47652108be88f7f86db5",
+                "parameters": [
+                    {
+                        "name": "genre_id",
+                        "in": "path",
+                        "description": "Genre ID",
+                        "required": true,
+                        "schema": {
+                            "type": "integer"
+                        },
+                        "example": 1
+                    },
+                    {
+                        "name": "letter",
+                        "in": "query",
+                        "description": "Address letter",
+                        "required": true,
+                        "schema": {
+                            "type": "string"
+                        },
+                        "example": "С"
+                    },
+                    {
+                        "name": "number",
+                        "in": "query",
+                        "description": "Address number",
+                        "required": true,
+                        "schema": {
+                            "type": "string"
+                        },
+                        "example": "76"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Successful operation"
+                    },
+                    "404": {
+                        "description": "Not found"
+                    }
+                },
+                "security": [
+                    {
+                        "bearerAuth": []
+                    }
+                ]
+            }
+        }
+    },
+    "tags": [
+        {
+            "name": "Auth",
+            "description": "Auth"
+        },
+        {
+            "name": "Addresses",
+            "description": "Addresses"
+        }
+    ]
+}
