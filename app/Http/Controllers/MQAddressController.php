@@ -3,16 +3,15 @@
 namespace App\Http\Controllers;
 
 use App\Models\MQAddress;
+use App\Models\MQAddressNpc;
 use App\Models\MQCaseInstance;
 use App\Models\UserMQAddressMQCaseInstance;
-use ErrorException;
+use Illuminate\Database\Eloquent\ModelNotFoundException;
 use Illuminate\Database\UniqueConstraintViolationException;
 use Illuminate\Http\Request;
 use Illuminate\Http\Response;
 use OpenApi\Attributes as OA;
 use Symfony\Component\HttpFoundation\Response as ResponseAlias;
-use function PHPSTORM_META\map;
-use Illuminate\Database\RecordNotFoundException;
 
 class MQAddressController extends Controller
 {
@@ -67,6 +66,12 @@ class MQAddressController extends Controller
         tags: ["Addresses"],
         parameters: [
             new OA\Parameter(
+                name: "Accept",
+                in: "header",
+                required: true,
+                schema: new OA\Schema(type: "string", default: "application/json")
+            ),
+            new OA\Parameter(
                 name: "genre_id",
                 description: "Genre ID",
                 in: "path",
@@ -96,7 +101,7 @@ class MQAddressController extends Controller
                 in: "query",
                 required: true,
                 schema: new OA\Schema(type: "string"),
-                example: '76'
+                example: '1'
             ),
         ],
         responses: [
@@ -118,15 +123,34 @@ class MQAddressController extends Controller
         $number = $validated["number"];
         $instance = $validated["instance_id"];
 
+        $json = [];
+
         try {
             $caseInstance = MQCaseInstance::where('id', $instance)->firstOrFail();
             $address = MQAddress::where('m_q_genre_id', $genre_id)
                 ->where('letter', $letter)
                 ->where('number', $number)
                 ->firstOrFail();
-        } catch (RecordNotFoundException) {
+
+            $json = [
+                'id' => $address->id,
+                'name' => $address->name,
+                'number' => $address->number,
+                'letter' => $address->letter,
+                'm_q_address_object_id' => $address->m_q_address_object_id,
+            ];
+        } catch (ModelNotFoundException $e) {
             return response(null, ResponseAlias::HTTP_NOT_FOUND);
         }
+
+        try {
+            $caseId = $caseInstance->m_q_case_id;
+            $npc = MQAddressNpc::where('m_q_address_id', $address->id)
+                ->where('m_q_case_id', $caseId)
+                ->firstOrFail();
+            $json['npc'] = $npc;
+        } catch (ModelNotFoundException $e) {}
+
 
         try {
             $pivot = new UserMQAddressMQCaseInstance;
@@ -138,6 +162,16 @@ class MQAddressController extends Controller
             // this is done on purpose
         }
 
-        return response($address);
+        //TODO make notifications
+//        $admin = User::all();
+//        $admin = User::where('id', $caseInstance->admin_id)->first();
+//
+//        $notification = Notification::make()
+//            ->title('Got pidrila rabotai')
+//            ->success()
+//            ->broadcast($admin);
+////            ->sendToDatabase($admin);
+//        $json['notification'] = $notification;
+        return response($json);
     }
 }
