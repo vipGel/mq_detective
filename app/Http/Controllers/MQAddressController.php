@@ -5,7 +5,9 @@ namespace App\Http\Controllers;
 use App\Models\MQAddress;
 use App\Models\MQAddressNpc;
 use App\Models\MQCaseInstance;
+use App\Models\User;
 use App\Models\UserMQAddressMQCaseInstance;
+use Filament\Notifications\Notification;
 use Illuminate\Database\Eloquent\ModelNotFoundException;
 use Illuminate\Database\UniqueConstraintViolationException;
 use Illuminate\Http\Request;
@@ -122,8 +124,7 @@ class MQAddressController extends Controller
         $letter = $validated["letter"];
         $number = $validated["number"];
         $instance = $validated["instance_id"];
-
-        $json = [];
+        $user = $request->user();
 
         try {
             $caseInstance = MQCaseInstance::where('id', $instance)->firstOrFail();
@@ -143,18 +144,13 @@ class MQAddressController extends Controller
             return response(null, ResponseAlias::HTTP_NOT_FOUND);
         }
 
-        try {
-            $caseId = $caseInstance->m_q_case_id;
-            $npc = MQAddressNpc::where('m_q_address_id', $address->id)
-                ->where('m_q_case_id', $caseId)
-                ->firstOrFail();
-            $json['npc'] = $npc;
-        } catch (ModelNotFoundException $e) {}
-
+        $json['npc'] = MQAddressNpc::where('m_q_address_id', $address->id)
+            ->where('m_q_case_id', $caseInstance->m_q_case_id)
+            ->first();
 
         try {
             $pivot = new UserMQAddressMQCaseInstance;
-            $pivot->user_id = $request->user()->id;
+            $pivot->user_id = $user->id;
             $pivot->m_q_address_id = $address->id;
             $pivot->m_q_case_instance_id = $caseInstance->id;
             $pivot->saveOrFail();
@@ -162,16 +158,13 @@ class MQAddressController extends Controller
             // this is done on purpose
         }
 
-        //TODO make notifications
-//        $admin = User::all();
-//        $admin = User::where('id', $caseInstance->admin_id)->first();
-//
-//        $notification = Notification::make()
-//            ->title('Got pidrila rabotai')
-//            ->success()
-//            ->broadcast($admin);
-////            ->sendToDatabase($admin);
-//        $json['notification'] = $notification;
+        $admin = User::where('id', $caseInstance->admin_id)->first();
+        Notification::make()
+            ->title($user->name . ' went to address ' . $address->letter . '-' . $address->number)
+            ->body('')
+            ->sendToDatabase($admin)
+            ->broadcast($admin);
+
         return response($json);
     }
 }
