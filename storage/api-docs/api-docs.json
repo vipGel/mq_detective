@@ -248,6 +248,95 @@
                     }
                 }
             }
+        },
+        "/api/questions/{case_id}": {
+            "get": {
+                "tags": [
+                    "Questions"
+                ],
+                "summary": "Get a list of questions of a case",
+                "operationId": "c690bb4313f5f333d710b229f96c9181",
+                "parameters": [
+                    {
+                        "name": "case_id",
+                        "in": "path",
+                        "description": "Case ID",
+                        "required": true,
+                        "schema": {
+                            "type": "integer"
+                        },
+                        "example": "1"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Successful operation"
+                    }
+                }
+            }
+        },
+        "/api/answer": {
+            "post": {
+                "tags": [
+                    "Questions"
+                ],
+                "summary": "Answer to question",
+                "operationId": "d0b663d84677970c89fd5d18333f1e66",
+                "parameters": [
+                    {
+                        "name": "Accept",
+                        "in": "header",
+                        "required": true,
+                        "schema": {
+                            "type": "string",
+                            "default": "application/json"
+                        }
+                    }
+                ],
+                "requestBody": {
+                    "required": true,
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "properties": {
+                                    "answer": {
+                                        "description": "Text of the answer",
+                                        "type": "string",
+                                        "example": "answer"
+                                    },
+                                    "question_id": {
+                                        "description": "ID of a question",
+                                        "type": "integer",
+                                        "example": "1"
+                                    },
+                                    "instance_id": {
+                                        "description": "Case instance id",
+                                        "type": "integer",
+                                        "example": "1"
+                                    }
+                                },
+                                "type": "object"
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "200": {
+                        "description": "Successful operation"
+                    },
+                    "401": {
+                        "description": "Unauthorized"
+                    },
+                    "405": {
+                        "description": "User can't answer twice to one question"
+                    }
+                },
+                "security": [
+                    {
+                        "bearerAuth": []
+                    }
+                ]
+            }
         }
     },
     "components": {
@@ -271,6 +360,10 @@
         {
             "name": "Genres",
             "description": "Genres"
+        },
+        {
+            "name": "Questions",
+            "description": "Questions"
         }
     ]
 }

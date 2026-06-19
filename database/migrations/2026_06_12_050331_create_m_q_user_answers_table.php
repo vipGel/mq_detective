@@ -29,6 +29,7 @@ return new class extends Migration
                 ->onDelete('cascade');
             $table->timestamps();
 
+            $table->unique(['user_id', 'm_q_case_instance_id', 'm_q_question_id'], 'user_instance_question_unique');
         });
     }
 

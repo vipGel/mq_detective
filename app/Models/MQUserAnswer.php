@@ -23,7 +23,7 @@ class MQUserAnswer extends Model
         'points',
         'm_q_question_id',
         'user_id',
-        'm_q_instance_id',
+        'm_q_case_instance_id',
     ];
 
     //TODO make $points to be filled only by team admin
