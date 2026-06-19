@@ -12,6 +12,11 @@ use Illuminate\Database\Eloquent\Model;
  */
 class MQInstanceState extends Model
 {
+
+    const started = 'started';
+    const paused = 'paused';
+    const ended = 'ended';
+
     protected $fillable = [
         'name',
     ];

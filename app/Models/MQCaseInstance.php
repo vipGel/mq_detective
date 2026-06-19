@@ -26,8 +26,9 @@ class MQCaseInstance extends Model
         'm_q_instance_state_id',
     ];
 
+    const threshold = 60;
+
 //    public int $id;
-    //TODO make a function to calculate $team_points
 
     public function mQCase(): BelongsTo
     {
@@ -48,6 +49,7 @@ class MQCaseInstance extends Model
     {
         return $this->hasMany(UserMQAddressMQCaseInstance::class);
     }
+
     public function users(): BelongsToMany
     {
         return $this->belongsToMany(
@@ -63,14 +65,60 @@ class MQCaseInstance extends Model
         return $this->hasMany(MQUserAnswer::class);
     }
 
-//    public static function getEloquentQuery(): Builder
-//    {
-//        $query = parent::getEloquentQuery();
-//
-//        if (auth()->user()->hasRole('super_admin')) {
-//            return $query;
-//        }
-//
-//        return $query->where('admin_id', auth()->id());
-//    }
+    public function teamPoints(): float
+    {
+        $coefAboveThreshold = 100; // Коэффициент если очки команды больше порога
+        $coefBelowThreshold = 25; // Коэффициент если очки команды ниже порога
+
+        $points = 0; // общие очки команды за вопросы
+        $maxTeamPoints = 0; // максимум очков набранные в игре за вопросы
+
+        $admin_id = $this->admin()->first()->id;
+
+        // получение всех команд которые сейчас играют
+        $instances = MQCaseInstance::where('m_q_instance_state_id', MQInstanceState::started)
+            ->where('admin_id', $admin_id)
+            ->get();
+
+        // вычисление максимума очков набранных в игре за вопросы
+        foreach ($instances as $instance) {
+            // очки одной команды
+            $instanceUserAnswerPoints = 0;
+            $instance->mQUserAnswers()->each(function (MQUserAnswer $answer) use (&$instanceUserAnswerPoints) {
+                $instanceUserAnswerPoints += $answer->points ?? 0;
+            });
+            if ($instanceUserAnswerPoints > $maxTeamPoints) {
+                $maxTeamPoints = $instanceUserAnswerPoints;
+            }
+
+            // очки текущей команды
+            if ($this->id == $instance->id) {
+                $points = $instanceUserAnswerPoints;
+            }
+        }
+
+        // вычисление порога очков
+        $thresholdPoints = $maxTeamPoints / self::threshold;
+
+        // определение прошла ли команда через порог
+        $coef = $points > $thresholdPoints ? $coefAboveThreshold : $coefBelowThreshold;
+
+        // количество поездок команды
+        $trips = $this->userAddress()->count();
+
+        // очки в квадрате умноженные на коэффициент деленные на количество поездок
+        return (($points * $points) * $coef) / $trips;
+    }
+
+    public function teamPointsSimplified(): float
+    {
+        $points = 0;
+        $this->mQUserAnswers()->each(function (MQUserAnswer $answer) use (&$points) {
+            $points += $answer->points ?? 0;
+        });
+
+        $trips = $this->userAddress()->count();
+
+        return 20 * $points * $points / sqrt($trips);
+    }
 }
