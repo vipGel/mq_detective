@@ -55,7 +55,7 @@ class MQUserAnswersRelationManager extends RelationManager
                     ->numeric()
                     ->placeholder('-'),
                 TextEntry::make('mQQuestion.id')
-                    ->label('M q question'),
+                    ->label('Question'),
                 TextEntry::make('user.name')
                     ->label('User'),
                 TextEntry::make('created_at')
@@ -77,8 +77,9 @@ class MQUserAnswersRelationManager extends RelationManager
                 TextColumn::make('points')
                     ->numeric()
                     ->sortable(),
-                TextColumn::make('mQQuestion.id')
-                    ->searchable(),
+                TextColumn::make('mQQuestion.question')
+                    ->searchable()
+                ->label('Question'),
                 TextColumn::make('user.name')
                     ->searchable(),
                 TextColumn::make('created_at')
@@ -108,6 +109,7 @@ class MQUserAnswersRelationManager extends RelationManager
 //                    DissociateBulkAction::make(),
 //                    DeleteBulkAction::make(),
                 ]),
-            ]);
+            ])
+            ->poll('5s');
     }
 }

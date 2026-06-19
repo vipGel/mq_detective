@@ -42,7 +42,8 @@ class UserAddressRelationManager extends RelationManager
                 TextColumn::make('user.name')
                     ->sortable(),
                 TextColumn::make('mQAddress.name')
-                    ->searchable(),
+                    ->searchable()
+                    ->label('Address'),
                 TextColumn::make('created_at')
                     ->dateTime()
                     ->sortable()
@@ -69,6 +70,7 @@ class UserAddressRelationManager extends RelationManager
 //                    DissociateBulkAction::make(),
 //                    DeleteBulkAction::make(),
                 ]),
-            ]);
+            ])
+            ->poll('5s');
     }
 }

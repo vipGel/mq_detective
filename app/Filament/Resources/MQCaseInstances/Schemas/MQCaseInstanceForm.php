@@ -16,17 +16,14 @@ class MQCaseInstanceForm
                     ->default(null),
                 TextInput::make('team_points')
                     ->numeric()
-                    ->default(null),
+                    ->default(null)
+                    ->disabled(),
                 Select::make('m_q_case_id')
                     ->relationship('mQCase', 'name')
                     ->searchable()
                     ->required()
                     ->label('Case')
                     ->disabledOn('edit'),
-//                Select::make('admin_id')
-//                    ->relationship('admin', 'name')
-//                    ->searchable()
-//                    ->required(),
                 Select::make('m_q_instance_state_id')
                     ->relationship('mQInstanceState', 'name')
                     ->required()->label('Case Instance State'),
