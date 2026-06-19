@@ -23,6 +23,8 @@ class QuestionsRelationManager extends RelationManager
 {
     protected static string $relationship = 'mQQuestions';
 
+    protected static ?string $title = 'Questions';
+
     public function form(Schema $schema): Schema
     {
         return $schema
@@ -76,7 +78,7 @@ class QuestionsRelationManager extends RelationManager
                 //
             ])
             ->headerActions([
-                CreateAction::make(),
+                CreateAction::make()->label('Add Question'),
 //                AssociateAction::make(),
             ])
             ->recordActions([

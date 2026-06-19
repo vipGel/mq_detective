@@ -23,6 +23,8 @@ class NpcsRelationManager extends RelationManager
 {
     protected static string $relationship = 'mQNpcs';
 
+    protected static ?string $title = 'NPC';
+
     public function form(Schema $schema): Schema
     {
         return $schema

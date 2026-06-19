@@ -22,7 +22,7 @@ class MQAddressesTable
                     ->searchable(),
                 TextColumn::make('mQAddressObject.name')
                     ->sortable()
-                    ->label('Address Object'),
+                    ->label('Point of Interest'),
                 TextColumn::make('mQGenre.name')
                     ->sortable()
                     ->label('Genre'),

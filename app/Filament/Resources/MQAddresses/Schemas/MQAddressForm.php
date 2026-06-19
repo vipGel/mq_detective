@@ -21,7 +21,7 @@ class MQAddressForm
                 Select::make('m_q_address_object_id')
                     ->relationship('mQAddressObject', 'name')
                     ->required()
-                    ->label('Address Object'),
+                    ->label('Point of Interest'),
                 Select::make('m_q_genre_id')
                     ->relationship('mQGenre', 'name')
                     ->required()

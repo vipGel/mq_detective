@@ -20,6 +20,7 @@ class TipsRelationManager extends RelationManager
 {
     protected static string $relationship = 'mQTips';
 
+    protected static ?string $title = 'Tips';
     public function form(Schema $schema): Schema
     {
         return $schema
@@ -51,7 +52,7 @@ class TipsRelationManager extends RelationManager
                 //
             ])
             ->headerActions([
-                CreateAction::make(),
+                CreateAction::make()->label('New Tip'),
 //                AssociateAction::make(),
             ])
             ->recordActions([

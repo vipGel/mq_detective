@@ -23,6 +23,7 @@ class MQUserAnswersRelationManager extends RelationManager
 {
     protected static string $relationship = 'mQUserAnswers';
 
+    protected static ?string $title = 'User Answers';
     public function form(Schema $schema): Schema
     {
         return $schema
@@ -36,6 +37,7 @@ class MQUserAnswersRelationManager extends RelationManager
                 Select::make('m_q_question_id')
                     ->relationship('mQQuestion', 'question')
                     ->required()
+                    ->label('Question')
                     ->disabled(),
                 Select::make('user_id')
                     ->relationship('user', 'name')
