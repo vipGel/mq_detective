@@ -77,12 +77,12 @@ class QuestionsRelationManager extends RelationManager
             ])
             ->headerActions([
                 CreateAction::make(),
-                AssociateAction::make(),
+//                AssociateAction::make(),
             ])
             ->recordActions([
                 ViewAction::make(),
                 EditAction::make(),
-                DissociateAction::make(),
+//                DissociateAction::make(),
                 DeleteAction::make(),
             ])
             ->toolbarActions([

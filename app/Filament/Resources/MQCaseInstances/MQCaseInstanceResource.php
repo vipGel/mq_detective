@@ -6,6 +6,8 @@ use App\Filament\Resources\MQCaseInstances\Pages\CreateMQCaseInstance;
 use App\Filament\Resources\MQCaseInstances\Pages\EditMQCaseInstance;
 use App\Filament\Resources\MQCaseInstances\Pages\ListMQCaseInstances;
 use App\Filament\Resources\MQCaseInstances\Pages\ViewMQCaseInstance;
+use App\Filament\Resources\MQCaseInstances\RelationManagers\MQUserAnswersRelationManager;
+use App\Filament\Resources\MQCaseInstances\RelationManagers\UserAddressRelationManager;
 use App\Filament\Resources\MQCaseInstances\RelationManagers\UsersRelationManager;
 use App\Filament\Resources\MQCaseInstances\Schemas\MQCaseInstanceForm;
 use App\Filament\Resources\MQCaseInstances\Schemas\MQCaseInstanceInfolist;
@@ -49,6 +51,8 @@ class MQCaseInstanceResource extends Resource
     {
         return [
             UsersRelationManager::class,
+            UserAddressRelationManager::class,
+            MQUserAnswersRelationManager::class,
         ];
     }
 

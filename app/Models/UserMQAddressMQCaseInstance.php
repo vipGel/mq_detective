@@ -9,6 +9,7 @@ use Illuminate\Database\Eloquent\Relations\Pivot;
 /**
  * UserMQAddressMQCaseInstance class
  *
+ * @param int $id
  * @param int $user_id
  * @param int $m_q_address_id
  * @param int $m_q_case_instance_id
@@ -16,8 +17,8 @@ use Illuminate\Database\Eloquent\Relations\Pivot;
 class UserMQAddressMQCaseInstance extends Pivot
 {
 
-    public $timestamps = false;
-    public function users(): BelongsTo
+//    public $timestamps = false;
+    public function user(): BelongsTo
     {
         return $this->belongsTo(User::class);
     }

@@ -12,6 +12,7 @@ return new class extends Migration
     public function up(): void
     {
         Schema::create('user_m_q_address_m_q_case_instance', function (Blueprint $table) {
+            $table->id();
             $table->foreignId('user_id')
                 ->references('id')
                 ->on('users')
@@ -24,7 +25,8 @@ return new class extends Migration
                 ->references('id')
                 ->on('m_q_addresses')
                 ->onDelete('cascade');
-            $table->unique(['user_id', 'm_q_case_instance_id', 'm_q_address_id']);
+            $table->timestamps();
+            $table->unique(['user_id', 'm_q_case_instance_id', 'm_q_address_id'], 'user_instance_address_unique');
         });
     }
 

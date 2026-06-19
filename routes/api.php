@@ -1,6 +1,8 @@
 <?php
 
 use App\Http\Controllers\Auth\Login;
+use App\Http\Controllers\Auth\Logout;
+use App\Http\Controllers\Auth\Register;
 use App\Http\Controllers\MQAddressController;
 use App\Http\Controllers\MQGenreController;
 use Illuminate\Support\Facades\Route;
@@ -8,6 +10,8 @@ use Illuminate\Support\Facades\Route;
 Route::group(['namespace' => 'api'], function () {
 
     Route::post('login', [Login::class, 'login']);
+    Route::post('register', [Register::class, 'register']);
+    Route::post('logout', [Logout::class, 'logout']);
 
 
     Route::get('genres', [MQGenreController::class, 'genres']);

@@ -44,12 +44,4 @@ class UserFactory extends Factory
         ]);
     }
 
-    public function superAdmin(): static
-    {
-        $role = Role::where('name', 'super admin')->first();
-
-        return $this->state(fn (array $attributes) => [
-            'role_id' => $role->id,
-        ]);
-    }
 }

@@ -14,6 +14,7 @@ class MQInstanceStateSeeder extends Seeder
     public function run(): void
     {
         MQInstanceState::create(['name' => 'started']);
+        MQInstanceState::create(['name' => 'paused']);
         MQInstanceState::create(['name' => 'ended']);
         // maybe more
 

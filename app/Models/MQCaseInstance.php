@@ -6,6 +6,7 @@ use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\Relations\BelongsToMany;
+use Illuminate\Database\Eloquent\Relations\HasMany;
 
 /**
  * MQCaseInstance class
@@ -43,6 +44,10 @@ class MQCaseInstance extends Model
         return $this->belongsTo(MQInstanceState::class, 'm_q_case_id');
     }
 
+    public function userAddress(): HasMany
+    {
+        return $this->hasMany(UserMQAddressMQCaseInstance::class);
+    }
     public function users(): BelongsToMany
     {
         return $this->belongsToMany(
@@ -51,6 +56,11 @@ class MQCaseInstance extends Model
             'm_q_case_instance_id',
             'user_id'
         );
+    }
+
+    public function mQUserAnswers(): HasMany
+    {
+        return $this->hasMany(MQUserAnswer::class);
     }
 
 //    public static function getEloquentQuery(): Builder
