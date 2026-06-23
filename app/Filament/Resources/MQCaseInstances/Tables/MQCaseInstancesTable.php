@@ -17,7 +17,7 @@ class MQCaseInstancesTable
             ->columns([
                 TextColumn::make('name')
                     ->searchable(),
-                TextColumn::make('team_points')
+                TextColumn::make('calculated_team_points')
                     ->numeric()
                     ->sortable(),
                 TextColumn::make('mQCase.name')

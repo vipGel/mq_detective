@@ -2,6 +2,7 @@
 
 namespace App\Filament\Resources\MQCaseInstances\Schemas;
 
+use Filament\Forms\Components\Placeholder;
 use Filament\Infolists\Components\TextEntry;
 use Filament\Schemas\Schema;
 
@@ -13,9 +14,10 @@ class MQCaseInstanceInfolist
             ->components([
                 TextEntry::make('name')
                     ->placeholder('-'),
-                TextEntry::make('team_points')
+                PlaceHolder::make('team_points')
                     ->numeric()
-                    ->placeholder('-'),
+                    ->default(null)
+                    ->content(fn ($record) => $record?->calculated_team_points),
                 TextEntry::make('mQCase.name'),
                 TextEntry::make('admin.name')
                     ->label('Admin'),

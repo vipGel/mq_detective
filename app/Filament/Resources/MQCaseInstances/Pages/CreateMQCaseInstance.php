@@ -12,7 +12,7 @@ class CreateMQCaseInstance extends CreateRecord
     protected function mutateFormDataBeforeCreate(array $data): array
     {
         $data['admin_id'] = auth()->id();
-
+        $data['m_q_instance_state_id'] = 1;
         return $data;
     }
 }

@@ -23,6 +23,12 @@ class MQAddressController extends Controller
         tags: ["Addresses"],
         parameters: [
             new OA\Parameter(
+                name: "Accept",
+                in: "header",
+                required: true,
+                schema: new OA\Schema(type: "string", default: "application/json")
+            ),
+            new OA\Parameter(
                 name: "genre_id",
                 description: "Genre ID",
                 in: "path",
@@ -44,6 +50,12 @@ class MQAddressController extends Controller
         summary: "Get a list of address letter of a genre",
         tags: ["Addresses"],
         parameters: [
+            new OA\Parameter(
+                name: "Accept",
+                in: "header",
+                required: true,
+                schema: new OA\Schema(type: "string", default: "application/json")
+            ),
             new OA\Parameter(
                 name: "genre_id",
                 description: "Genre ID",

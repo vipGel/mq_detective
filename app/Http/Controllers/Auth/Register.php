@@ -45,6 +45,14 @@ class Register extends Controller
             )
         ),
         tags: ["Auth"],
+        parameters: [
+            new OA\Parameter(
+                name: "Accept",
+                in: "header",
+                required: true,
+                schema: new OA\Schema(type: "string", default: "application/json")
+            ),
+        ],
         responses: [
             new OA\Response(
                 response: 201,

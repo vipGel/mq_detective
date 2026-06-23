@@ -15,6 +15,12 @@ class MQQuestionController extends Controller
         tags: ["Questions"],
         parameters: [
             new OA\Parameter(
+                name: "Accept",
+                in: "header",
+                required: true,
+                schema: new OA\Schema(type: "string", default: "application/json")
+            ),
+            new OA\Parameter(
                 name: "case_id",
                 description: "Case ID",
                 in: "path",

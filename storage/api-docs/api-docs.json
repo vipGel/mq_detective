@@ -275,6 +275,55 @@
                 }
             }
         },
+        "/api/checkTips": {
+            "get": {
+                "tags": [
+                    "Tips"
+                ],
+                "summary": "Check if tips are available and get them",
+                "operationId": "205301e192916749b31a10fe082b97d8",
+                "parameters": [
+                    {
+                        "name": "Accept",
+                        "in": "header",
+                        "required": true,
+                        "schema": {
+                            "type": "string",
+                            "default": "application/json"
+                        }
+                    },
+                    {
+                        "name": "instance_id",
+                        "in": "query",
+                        "description": "Case instance id",
+                        "required": true,
+                        "schema": {
+                            "type": "string"
+                        },
+                        "example": "1"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Successful operation"
+                    },
+                    "404": {
+                        "description": "Not found"
+                    },
+                    "401": {
+                        "description": "Unauthorized"
+                    },
+                    "403": {
+                        "description": "Forbidden"
+                    }
+                },
+                "security": [
+                    {
+                        "bearerAuth": []
+                    }
+                ]
+            }
+        },
         "/api/answer": {
             "post": {
                 "tags": [
@@ -364,6 +413,10 @@
         {
             "name": "Questions",
             "description": "Questions"
+        },
+        {
+            "name": "Tips",
+            "description": "Tips"
         }
     ]
 }

@@ -6,6 +6,7 @@ use App\Http\Controllers\Auth\Register;
 use App\Http\Controllers\MQAddressController;
 use App\Http\Controllers\MQGenreController;
 use App\Http\Controllers\MQQuestionController;
+use App\Http\Controllers\MQTipsController;
 use App\Http\Controllers\MQUserAnswerController;
 use Illuminate\Support\Facades\Route;
 
@@ -26,5 +27,7 @@ Route::group(['namespace' => 'api'], function () {
         Route::get('address/{genre_id}', [MQAddressController::class, 'address']);
 
         Route::post('answer', [MQUserAnswerController::class, 'answer']);
+
+        Route::get('check_tips', [MQTipsController::class, 'checkTips']);
     });
 });

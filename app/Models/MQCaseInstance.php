@@ -26,6 +26,10 @@ class MQCaseInstance extends Model
         'm_q_instance_state_id',
     ];
 
+    protected $appends = [
+        'calculated_team_points',
+    ];
+
     const threshold = 60;
 
 //    public int $id;
@@ -63,6 +67,11 @@ class MQCaseInstance extends Model
     public function mQUserAnswers(): HasMany
     {
         return $this->hasMany(MQUserAnswer::class);
+    }
+
+    public function getCalculatedTeamPointsAttribute(): float
+    {
+        return $this->teamPoints();
     }
 
     public function teamPoints(): float
@@ -105,9 +114,16 @@ class MQCaseInstance extends Model
 
         // количество поездок команды
         $trips = $this->userAddress()->count();
+        if ($trips === 0) {
+            return 0;
+        }
 
-        // очки в квадрате умноженные на коэффициент деленные на количество поездок
-        return (($points * $points) * $coef) / $trips;
+        try {
+            // очки в квадрате умноженные на коэффициент деленные на количество поездок
+            return (($points * $points) * $coef) / $trips;
+        } catch (\Exception $e) {
+            return 0;
+        }
     }
 
     public function teamPointsSimplified(): float
@@ -118,6 +134,9 @@ class MQCaseInstance extends Model
         });
 
         $trips = $this->userAddress()->count();
+        if ($trips === 0) {
+            return 0;
+        }
 
         return 20 * $points * $points / sqrt($trips);
     }

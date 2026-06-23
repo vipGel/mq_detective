@@ -12,6 +12,14 @@ class MQGenreController extends Controller
         path: "/api/genres",
         summary: "Get a list of genres",
         tags: ["Genres"],
+        parameters: [
+            new OA\Parameter(
+                name: "Accept",
+                in: "header",
+                required: true,
+                schema: new OA\Schema(type: "string", default: "application/json")
+            ),
+        ],
         responses: [
             new OA\Response(response: 200, description: "Successful operation"),
         ]
