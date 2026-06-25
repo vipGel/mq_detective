@@ -25,7 +25,7 @@ class MQCaseInstancesTable
                 TextColumn::make('admin.name')
                     ->searchable(),
                 TextColumn::make('mQInstanceState.name')
-                    ->numeric()
+//                    ->numeric()
                     ->sortable()->label('Case Instance State'),
                 TextColumn::make('created_at')
                     ->dateTime()

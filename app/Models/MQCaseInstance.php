@@ -74,6 +74,27 @@ class MQCaseInstance extends Model
         return $this->teamPoints();
     }
 
+    // hardcode
+    public function setStartedState()
+    {
+        $this->m_q_instance_state_id = 1;
+        $this->started_at = now();
+        $this->save();
+    }
+
+    public function setPausedState()
+    {
+        $this->m_q_instance_state_id = 2;
+        $this->save();
+    }
+
+    public function setEndedState()
+    {
+        $this->m_q_instance_state_id = 3;
+        $this->ended_at = now();
+        $this->save();
+    }
+
     public function teamPoints(): float
     {
         $coefAboveThreshold = 100; // Коэффициент если очки команды больше порога

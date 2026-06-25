@@ -27,6 +27,8 @@ return new class extends Migration
                 ->references('id')
                 ->on('m_q_instance_states')
                 ->onDelete('no action');
+            $table->timestamp('started_at')->nullable();
+            $table->timestamp('ended_at')->nullable();
             $table->timestamps();
         });
     }

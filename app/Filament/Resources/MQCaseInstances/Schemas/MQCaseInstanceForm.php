@@ -2,6 +2,8 @@
 
 namespace App\Filament\Resources\MQCaseInstances\Schemas;
 
+use App\Models\MQCaseInstance;
+use Filament\Actions\Action;
 use Filament\Forms\Components\Placeholder;
 use Filament\Forms\Components\Select;
 use Filament\Forms\Components\TextInput;
@@ -31,6 +33,28 @@ class MQCaseInstanceForm
                     ->required()
                     ->label('Case Instance State')
                     ->disabledOn('create'),
+
+                Action::make('start_game')
+                    ->action(function (MQCaseInstance $instance) {
+                        $instance->setStartedState();
+                    })
+                    ->hidden(fn(?MQCaseInstance $record) => !$record)
+                    ->disabled(function (?MQCaseInstance $record) {
+                        return $record?->started_at ?? true;
+                    })
+                    ->successNotificationTitle('Game started!'),
+                Action::make('end_game')
+                    ->action(function (MQCaseInstance $instance) {
+                        $instance->setEndedState();
+                    })
+                    ->hidden(fn(?MQCaseInstance $record) => !$record)
+                    ->disabled(function (?MQCaseInstance $record) {
+                        if (!$record) {
+                            return true;
+                        }
+                        return $record?->ended_at ?? false;
+                    })
+                    ->successNotificationTitle('Game ended!'),
             ]);
     }
 }

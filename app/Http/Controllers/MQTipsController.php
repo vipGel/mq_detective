@@ -6,6 +6,7 @@ use App\Models\MQCaseInstance;
 use Illuminate\Http\Request;
 use Illuminate\Http\Response;
 use OpenApi\Attributes as OA;
+use Symfony\Component\HttpFoundation\Response as ResponseAlias;
 
 class MQTipsController extends Controller
 {
@@ -47,6 +48,16 @@ class MQTipsController extends Controller
         $tips = $instance->mQCase->mQTips;
 
         $data = [];
+        if (!$instance->started_at) {
+            $data['message'] = 'The game not started yet';
+            return response($data, ResponseAlias::HTTP_METHOD_NOT_ALLOWED);
+        }
+
+        if ($instance->ended_at) {
+            $data['message'] = 'The game ended';
+            return response($data, ResponseAlias::HTTP_METHOD_NOT_ALLOWED);
+        }
+
         foreach ($tips as $tip) {
             if ($instance->created_at->addMinutes($tip->time)->isPast()) {
                 $data[] = $tip;
