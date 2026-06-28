@@ -58,8 +58,13 @@ class MQTipsController extends Controller
             return response($data, ResponseAlias::HTTP_METHOD_NOT_ALLOWED);
         }
 
+        if ($instance->m_q_instance_state_id === 3) {
+            $data['message'] = 'The game paused';
+            return response($data, ResponseAlias::HTTP_METHOD_NOT_ALLOWED);
+        }
+
         foreach ($tips as $tip) {
-            if ($instance->created_at->addMinutes($tip->time)->isPast()) {
+            if ($instance->started_at->addMinutes($tip->time)->isPast()) {
                 $data[] = $tip;
             }
         }

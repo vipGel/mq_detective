@@ -14,6 +14,8 @@ class MQCaseInstanceInfolist
             ->components([
                 TextEntry::make('name')
                     ->placeholder('-'),
+                TextEntry::make('game_duration')
+                    ->numeric(),
                 PlaceHolder::make('team_points')
                     ->numeric()
                     ->default(null)
@@ -21,7 +23,18 @@ class MQCaseInstanceInfolist
                 TextEntry::make('mQCase.name'),
                 TextEntry::make('admin.name')
                     ->label('Admin'),
-                TextEntry::make('mQInstanceState.name'),
+                TextEntry::make('mQInstanceState.name')
+
+                    ->placeholder('-'),
+                TextEntry::make('started_at')
+                    ->dateTime()
+                    ->placeholder('-'),
+                TextEntry::make('ended_at')
+                    ->dateTime()
+                    ->placeholder('-'),
+                TextEntry::make('ends_at')
+                    ->dateTime()
+                    ->placeholder('-'),
                 TextEntry::make('created_at')
                     ->dateTime()
                     ->placeholder('-'),

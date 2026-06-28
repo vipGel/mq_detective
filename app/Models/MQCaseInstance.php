@@ -24,6 +24,14 @@ class MQCaseInstance extends Model
         'admin_id',
         'm_q_case_id',
         'm_q_instance_state_id',
+        'game_duration'
+    ];
+
+    protected $casts = [
+        'started_at' => 'datetime',
+        'paused_at' => 'datetime',
+        'ended_at' => 'datetime',
+        'ends_at' => 'datetime',
     ];
 
     protected $appends = [
@@ -77,20 +85,27 @@ class MQCaseInstance extends Model
     // hardcode
     public function setStartedState()
     {
-        $this->m_q_instance_state_id = 1;
-        $this->started_at = now();
+        if ($this->m_q_instance_state_id === 3) {
+            $seconds = $this->paused_at->diffInSeconds(now());
+            $this->ends_at = $this->ends_at->addSeconds($seconds);
+        } else {
+            $this->started_at = now();
+            $this->ends_at = now()->addMinutes($this->game_duration);
+        }
+        $this->m_q_instance_state_id = 2;
         $this->save();
     }
 
     public function setPausedState()
     {
-        $this->m_q_instance_state_id = 2;
+        $this->m_q_instance_state_id = 3;
+        $this->paused_at = now();
         $this->save();
     }
 
     public function setEndedState()
     {
-        $this->m_q_instance_state_id = 3;
+        $this->m_q_instance_state_id = 4;
         $this->ended_at = now();
         $this->save();
     }

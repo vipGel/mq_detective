@@ -13,6 +13,7 @@ use Illuminate\Database\Eloquent\Model;
 class MQInstanceState extends Model
 {
 
+    const not_started = 'not started';
     const started = 'started';
     const paused = 'paused';
     const ended = 'ended';

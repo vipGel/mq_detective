@@ -27,8 +27,11 @@ return new class extends Migration
                 ->references('id')
                 ->on('m_q_instance_states')
                 ->onDelete('no action');
+            $table->integer('game_duration');
             $table->timestamp('started_at')->nullable();
+            $table->timestamp('paused_at')->nullable();
             $table->timestamp('ended_at')->nullable();
+            $table->timestamp('ends_at')->nullable();
             $table->timestamps();
         });
     }
