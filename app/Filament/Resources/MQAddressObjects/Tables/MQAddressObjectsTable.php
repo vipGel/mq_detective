@@ -16,6 +16,9 @@ class MQAddressObjectsTable
             ->columns([
                 TextColumn::make('name')
                     ->searchable(),
+                TextColumn::make('author.name')
+                    ->label('Author')
+                    ->searchable(),
             ])
             ->filters([
                 //

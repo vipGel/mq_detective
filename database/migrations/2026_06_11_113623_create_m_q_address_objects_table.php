@@ -14,6 +14,10 @@ return new class extends Migration
         Schema::create('m_q_address_objects', function (Blueprint $table) {
             $table->id();
             $table->string('name');
+            $table->foreignId('author_id')
+                ->references('id')
+                ->on('users')
+                ->onDelete('cascade');
         });
     }
 

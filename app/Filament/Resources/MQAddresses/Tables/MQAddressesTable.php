@@ -16,6 +16,7 @@ class MQAddressesTable
             ->columns([
                 TextColumn::make('name')
                     ->searchable(),
+                //TODO make "$letter/$number"
                 TextColumn::make('letter')
                     ->searchable(),
                 TextColumn::make('number')
@@ -26,6 +27,9 @@ class MQAddressesTable
                 TextColumn::make('mQGenre.name')
                     ->sortable()
                     ->label('Genre'),
+                TextColumn::make('author.name')
+                    ->sortable()
+                    ->label('Author'),
             ])
             ->filters([
                 //

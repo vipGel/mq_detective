@@ -19,6 +19,10 @@ return new class extends Migration {
                 ->references('id')
                 ->on('m_q_genres')
                 ->onDelete('cascade');
+            $table->foreignId('author_id')
+                ->references('id')
+                ->on('users')
+                ->onDelete('cascade');
         });
     }
 

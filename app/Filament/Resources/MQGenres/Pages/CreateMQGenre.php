@@ -8,4 +8,10 @@ use Filament\Resources\Pages\CreateRecord;
 class CreateMQGenre extends CreateRecord
 {
     protected static string $resource = MQGenreResource::class;
+
+    protected function mutateFormDataBeforeCreate(array $data): array
+    {
+        $data['author_id'] = auth()->id();
+        return $data;
+    }
 }

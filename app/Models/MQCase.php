@@ -14,6 +14,7 @@ use Illuminate\Database\Eloquent\Relations\HasMany;
  * @param string $briefing
  * @param string $debriefing
  * @param MQGenre $genre
+ * @param User $author
  */
 class MQCase extends Model
 {
@@ -22,6 +23,7 @@ class MQCase extends Model
         'briefing',
         'debriefing',
         'm_q_genre_id',
+        'author_id',
     ];
 
     public $timestamps = false;
@@ -40,5 +42,9 @@ class MQCase extends Model
     public function mQTips(): HasMany
     {
         return $this->hasMany(MQTips::class);
+    }
+
+    public function author(): BelongsTo{
+        return $this->belongsTo(User::class, 'author_id');
     }
 }

@@ -17,6 +17,7 @@ use Illuminate\Database\Eloquent\Relations\HasOne;
  * @param string $number
  * @param MQGenre $genre
  * @param MQAddressObject $addressObject
+ * @param User $author
  */
 class MQAddress extends Model
 {
@@ -26,6 +27,7 @@ class MQAddress extends Model
         'number',
         'm_q_genre_id',
         'm_q_address_object_id',
+        'author_id'
     ];
 
     public $timestamps = false;
@@ -53,5 +55,9 @@ class MQAddress extends Model
     public function users(): BelongsToMany
     {
         return $this->belongsToMany(User::class)->using(UserMQAddressMQCaseInstance::class);
+    }
+
+    public function author(): BelongsTo{
+        return $this->belongsTo(User::class, 'author_id');
     }
 }

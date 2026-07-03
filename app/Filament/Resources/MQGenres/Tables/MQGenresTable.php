@@ -16,6 +16,9 @@ class MQGenresTable
             ->columns([
                 TextColumn::make('name')
                     ->searchable(),
+                TextColumn::make('author.name')
+                    ->searchable()
+                    ->label('Author'),
             ])
             ->filters([
                 //
