@@ -11,30 +11,30 @@ use Illuminate\Auth\Access\HandlesAuthorization;
 class MQAddressPolicy
 {
     use HandlesAuthorization;
-    
+
     public function viewAny(AuthUser $authUser): bool
     {
-        return $authUser->can('ViewAny:MQAddress');
+        return true;
     }
 
     public function view(AuthUser $authUser, MQAddress $mQAddress): bool
     {
-        return $authUser->can('View:MQAddress');
+        return true;
     }
 
     public function create(AuthUser $authUser): bool
     {
-        return $authUser->can('Create:MQAddress');
+        return true;
     }
 
     public function update(AuthUser $authUser, MQAddress $mQAddress): bool
     {
-        return $authUser->can('Update:MQAddress');
+        return $mQAddress->author_id == $authUser->id || $authUser->hasRole('super_admin');
     }
 
     public function delete(AuthUser $authUser, MQAddress $mQAddress): bool
     {
-        return $authUser->can('Delete:MQAddress');
+        return $mQAddress->author_id == $authUser->id || $authUser->hasRole('super_admin');
     }
 
     public function deleteAny(AuthUser $authUser): bool

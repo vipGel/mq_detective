@@ -11,30 +11,30 @@ use Illuminate\Auth\Access\HandlesAuthorization;
 class MQCasePolicy
 {
     use HandlesAuthorization;
-    
+
     public function viewAny(AuthUser $authUser): bool
     {
-        return $authUser->can('ViewAny:MQCase');
+        return true;
     }
 
     public function view(AuthUser $authUser, MQCase $mQCase): bool
     {
-        return $authUser->can('View:MQCase');
+        return true;
     }
 
     public function create(AuthUser $authUser): bool
     {
-        return $authUser->can('Create:MQCase');
+        return true;
     }
 
     public function update(AuthUser $authUser, MQCase $mQCase): bool
     {
-        return $authUser->can('Update:MQCase');
+        return $mQCase->author_id == $authUser->id || $authUser->hasRole('super_admin');
     }
 
     public function delete(AuthUser $authUser, MQCase $mQCase): bool
     {
-        return $authUser->can('Delete:MQCase');
+        return $mQCase->author_id == $authUser->id || $authUser->hasRole('super_admin');
     }
 
     public function deleteAny(AuthUser $authUser): bool

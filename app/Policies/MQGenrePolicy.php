@@ -11,30 +11,30 @@ use Illuminate\Auth\Access\HandlesAuthorization;
 class MQGenrePolicy
 {
     use HandlesAuthorization;
-    
+
     public function viewAny(AuthUser $authUser): bool
     {
-        return $authUser->can('ViewAny:MQGenre');
+        return true;
     }
 
     public function view(AuthUser $authUser, MQGenre $mQGenre): bool
     {
-        return $authUser->can('View:MQGenre');
+        return true;
     }
 
     public function create(AuthUser $authUser): bool
     {
-        return $authUser->can('Create:MQGenre');
+        return true;
     }
 
     public function update(AuthUser $authUser, MQGenre $mQGenre): bool
     {
-        return $authUser->can('Update:MQGenre');
+        return $mQGenre->author_id == $authUser->id || $authUser->hasRole('super_admin');
     }
 
     public function delete(AuthUser $authUser, MQGenre $mQGenre): bool
     {
-        return $authUser->can('Delete:MQGenre');
+        return $mQGenre->author_id == $authUser->id || $authUser->hasRole('super_admin');
     }
 
     public function deleteAny(AuthUser $authUser): bool
