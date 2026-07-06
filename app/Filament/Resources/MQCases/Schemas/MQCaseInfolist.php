@@ -11,13 +11,18 @@ class MQCaseInfolist
     {
         return $schema
             ->components([
-                TextEntry::make('name'),
+                TextEntry::make('name')
+                    ->label('Название'),
+                TextEntry::make('mQGenre.name')
+                    ->label('Жанр'),
                 TextEntry::make('briefing')
+                    ->label('Брифинг')
+                    ->html()
                     ->columnSpanFull(),
                 TextEntry::make('debriefing')
+                    ->label('Дебрифинг')
+                    ->html()
                     ->columnSpanFull(),
-                TextEntry::make('mQGenre.name')
-                    ->label('Genre'),
             ]);
     }
 }

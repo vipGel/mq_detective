@@ -12,6 +12,7 @@ class MQAddressObjectForm
         return $schema
             ->components([
                 TextInput::make('name')
+                    ->label('Название')
                     ->required(),
             ]);
     }

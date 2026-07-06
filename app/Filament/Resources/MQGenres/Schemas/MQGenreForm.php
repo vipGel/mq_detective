@@ -12,6 +12,7 @@ class MQGenreForm
         return $schema
             ->components([
                 TextInput::make('name')
+                    ->label('Название')
                     ->required(),
             ]);
     }

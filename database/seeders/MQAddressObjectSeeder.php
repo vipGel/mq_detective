@@ -13,7 +13,7 @@ class MQAddressObjectSeeder extends Seeder
      */
     public function run(): void
     {
-        MQAddressObject::create(['name' => 'individuals', 'author_id' => 1]);
+        MQAddressObject::create(['name' => 'Частные лица', 'author_id' => 1]);
         // and more
     }
 }

@@ -23,49 +23,53 @@ class MQUserAnswersRelationManager extends RelationManager
 {
     protected static string $relationship = 'mQUserAnswers';
 
-    protected static ?string $title = 'User Answers';
+    protected static ?string $title = 'Ответы игроков';
+
     public function form(Schema $schema): Schema
     {
         return $schema
             ->components([
                 TextInput::make('answer')
+                    ->label('Ответ')
                     ->required()
                     ->disabled(),
                 TextInput::make('points')
+                    ->label('Очки')
                     ->numeric()
                     ->default(null),
                 Select::make('m_q_question_id')
                     ->relationship('mQQuestion', 'question')
                     ->required()
-                    ->label('Question')
+                    ->label('Вопрос')
                     ->disabled(),
                 Select::make('user_id')
                     ->relationship('user', 'name')
+                    ->label('Игрок')
                     ->required()
                     ->disabled(),
             ]);
     }
 
-    public function infolist(Schema $schema): Schema
-    {
-        return $schema
-            ->components([
-                TextEntry::make('answer'),
-                TextEntry::make('points')
-                    ->numeric()
-                    ->placeholder('-'),
-                TextEntry::make('mQQuestion.id')
-                    ->label('Question'),
-                TextEntry::make('user.name')
-                    ->label('User'),
-                TextEntry::make('created_at')
-                    ->dateTime()
-                    ->placeholder('-'),
-                TextEntry::make('updated_at')
-                    ->dateTime()
-                    ->placeholder('-'),
-            ]);
-    }
+//    public function infolist(Schema $schema): Schema
+//    {
+//        return $schema
+//            ->components([
+//                TextEntry::make('answer'),
+//                TextEntry::make('points')
+//                    ->numeric()
+//                    ->placeholder('-'),
+//                TextEntry::make('mQQuestion.id')
+//                    ->label('Question'),
+//                TextEntry::make('user.name')
+//                    ->label('User'),
+//                TextEntry::make('created_at')
+//                    ->dateTime()
+//                    ->placeholder('-'),
+//                TextEntry::make('updated_at')
+//                    ->dateTime()
+//                    ->placeholder('-'),
+//            ]);
+//    }
 
     public function table(Table $table): Table
     {
@@ -73,20 +77,23 @@ class MQUserAnswersRelationManager extends RelationManager
             ->recordTitleAttribute('answer')
             ->columns([
                 TextColumn::make('answer')
+                    ->label('Ответ')
                     ->searchable(),
                 TextColumn::make('points')
+                    ->label('Очки')
                     ->numeric()
                     ->sortable(),
                 TextColumn::make('mQQuestion.question')
                     ->searchable()
-                ->label('Question'),
+                    ->label('Вопрос'),
                 TextColumn::make('user.name')
+                    ->label('Игрок')
                     ->searchable(),
-                TextColumn::make('created_at')
+                TextColumn::make('Отвечен')
                     ->dateTime()
                     ->sortable()
                     ->toggleable(isToggledHiddenByDefault: true),
-                TextColumn::make('updated_at')
+                TextColumn::make('Оценен')
                     ->dateTime()
                     ->sortable()
                     ->toggleable(isToggledHiddenByDefault: true),

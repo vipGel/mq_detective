@@ -13,7 +13,7 @@ class MQGenreSeeder extends Seeder
      */
     public function run(): void
     {
-        MQGenre::create(['name' => 'noir', 'author_id' => 1]);
+        MQGenre::create(['name' => 'Нуар', 'author_id' => 1]);
 //        MQGenre::create(['name' => 'cyberpunk']);
         // and more
 

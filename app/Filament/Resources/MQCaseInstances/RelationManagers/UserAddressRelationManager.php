@@ -21,6 +21,8 @@ class UserAddressRelationManager extends RelationManager
 {
     protected static string $relationship = 'userAddress';
 
+    protected static ?string $title = 'Прошедшие игроками адреса';
+
 //    public function form(Schema $schema): Schema
 //    {
 //        return $schema
@@ -40,15 +42,14 @@ class UserAddressRelationManager extends RelationManager
             ->recordTitleAttribute('id')
             ->columns([
                 TextColumn::make('user.name')
+                    ->label('Игрок')
                     ->sortable(),
                 TextColumn::make('mQAddress.name')
-                    ->searchable()
-                    ->label('Address'),
-                TextColumn::make('created_at')
-                    ->dateTime()
+                    ->label('Адрес')
                     ->sortable()
-                    ->toggleable(isToggledHiddenByDefault: true),
-                TextColumn::make('updated_at')
+                    ->searchable(),
+                TextColumn::make('created_at')
+                    ->label('Прошел')
                     ->dateTime()
                     ->sortable()
                     ->toggleable(isToggledHiddenByDefault: true),

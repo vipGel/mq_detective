@@ -28,7 +28,8 @@ class MQCaseInstanceResource extends Resource
 
     protected static ?string $recordTitleAttribute = 'name';
 
-    protected static ?string $label = 'Case Instance';
+    protected static ?string $label = 'Экземпляр';
+    protected static ?string $pluralModelLabel = 'Экземпляры';
 
     protected static string|null|\UnitEnum $navigationGroup = 'Cases';
 

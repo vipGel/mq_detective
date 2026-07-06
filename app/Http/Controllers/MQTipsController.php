@@ -64,6 +64,7 @@ class MQTipsController extends Controller
         }
 
         foreach ($tips as $tip) {
+            //TODO учитывай паузу или переделай под ends_at
             if ($instance->started_at->addMinutes($tip->time)->isPast()) {
                 $data[] = $tip;
             }

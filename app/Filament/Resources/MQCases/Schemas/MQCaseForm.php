@@ -2,6 +2,7 @@
 
 namespace App\Filament\Resources\MQCases\Schemas;
 
+use Filament\Forms\Components\RichEditor;
 use Filament\Forms\Components\Select;
 use Filament\Forms\Components\TextInput;
 use Filament\Forms\Components\Textarea;
@@ -14,16 +15,20 @@ class MQCaseForm
         return $schema
             ->components([
                 TextInput::make('name')
+                    ->label('Название')
                     ->required(),
-                Textarea::make('briefing')
-                    ->required()
-                    ->columnSpanFull(),
-                Textarea::make('debriefing')
-                    ->required()
-                    ->columnSpanFull(),
                 Select::make('m_q_genre_id')
                     ->relationship('mQGenre', 'name')
+                    ->label('Жанр')
                     ->required(),
+                RichEditor::make('briefing')
+                    ->label('Брифинг')
+                    ->required()
+                    ->columnSpanFull(),
+                RichEditor::make('debriefing')
+                    ->label('Дебрифинг')
+                    ->required()
+                    ->columnSpanFull(),
             ]);
     }
 }

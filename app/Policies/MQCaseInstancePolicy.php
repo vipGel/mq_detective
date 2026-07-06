@@ -19,7 +19,7 @@ class MQCaseInstancePolicy
 
     public function view(AuthUser $authUser, MQCaseInstance $mQCaseInstance): bool
     {
-        return $mQCaseInstance->author_id == $authUser->id || $authUser->hasRole('super_admin');
+        return $mQCaseInstance->admin_id == $authUser->id || $authUser->hasRole('super_admin');
     }
 
     public function create(AuthUser $authUser): bool

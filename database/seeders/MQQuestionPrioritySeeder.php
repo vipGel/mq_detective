@@ -13,7 +13,7 @@ class MQQuestionPrioritySeeder extends Seeder
      */
     public function run(): void
     {
-        MQQuestionPriority::create(['name' => 'main questions']);
-        MQQuestionPriority::create(['name' => 'extra questions']);
+        MQQuestionPriority::create(['name' => 'Основные вопросы']);
+        MQQuestionPriority::create(['name' => 'Дополнительные вопросы']);
     }
 }

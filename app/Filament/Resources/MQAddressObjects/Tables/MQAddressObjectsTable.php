@@ -15,9 +15,12 @@ class MQAddressObjectsTable
         return $table
             ->columns([
                 TextColumn::make('name')
+                    ->label('Название')
+                    ->sortable()
                     ->searchable(),
                 TextColumn::make('author.name')
-                    ->label('Author')
+                    ->label('Автор')
+                    ->sortable()
                     ->searchable(),
             ])
             ->filters([

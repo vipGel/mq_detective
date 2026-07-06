@@ -20,16 +20,19 @@ class TipsRelationManager extends RelationManager
 {
     protected static string $relationship = 'mQTips';
 
-    protected static ?string $title = 'Tips';
+    protected static ?string $title = 'Подсказки';
     public function form(Schema $schema): Schema
     {
         return $schema
             ->components([
                 TextInput::make('hint')
+                    ->label('Подсказки')
                     ->required(),
                 TextInput::make('clue')
+                    ->label('Наводка')
                     ->required(),
                 TextInput::make('time')
+                    ->label('Время')
                     ->required()
                     ->numeric(),
             ]);
@@ -41,10 +44,13 @@ class TipsRelationManager extends RelationManager
             ->recordTitleAttribute('hint')
             ->columns([
                 TextColumn::make('hint')
+                    ->label('Подсказка')
                     ->searchable(),
                 TextColumn::make('clue')
+                    ->label('Наводка')
                     ->searchable(),
                 TextColumn::make('time')
+                    ->label('Время')
                     ->numeric()
                     ->sortable(),
             ])
@@ -52,7 +58,8 @@ class TipsRelationManager extends RelationManager
                 //
             ])
             ->headerActions([
-                CreateAction::make()->label('New Tip'),
+                CreateAction::make()
+                    ->label('Создать подсказку'),
 //                AssociateAction::make(),
             ])
             ->recordActions([

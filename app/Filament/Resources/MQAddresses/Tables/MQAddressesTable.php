@@ -15,21 +15,25 @@ class MQAddressesTable
         return $table
             ->columns([
                 TextColumn::make('name')
+                    ->sortable()
+                    ->label('Название')
                     ->searchable(),
-                //TODO make "$letter/$number"
-                TextColumn::make('letter')
-                    ->searchable(),
-                TextColumn::make('number')
+                TextColumn::make('letter_number')
+                    ->sortable()
+                    ->label('Номер')
                     ->searchable(),
                 TextColumn::make('mQAddressObject.name')
                     ->sortable()
-                    ->label('Point of Interest'),
+                    ->label('Точка интереса')
+                    ->searchable(),
                 TextColumn::make('mQGenre.name')
                     ->sortable()
-                    ->label('Genre'),
+                    ->label('Жанр')
+                    ->searchable(),
                 TextColumn::make('author.name')
                     ->sortable()
-                    ->label('Author'),
+                    ->searchable()
+                    ->label('Автор'),
             ])
             ->filters([
                 //

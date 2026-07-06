@@ -16,22 +16,31 @@ class MQCaseInstancesTable
         return $table
             ->columns([
                 TextColumn::make('name')
+                    ->label('Название')
+                    ->sortable()
                     ->searchable(),
                 TextColumn::make('calculated_team_points')
                     ->numeric()
+                    ->label('Очки команды')
                     ->sortable(),
                 TextColumn::make('mQCase.name')
-                    ->sortable()->label('Case'),
+                    ->sortable()
+                    ->label('Кейс'),
                 TextColumn::make('admin.name')
-                    ->searchable(),
+                    ->label('Админ')
+                    ->searchable()
+                    ->sortable(),
                 TextColumn::make('mQInstanceState.name')
-//                    ->numeric()
-                    ->sortable()->label('Case Instance State'),
+                    ->sortable()
+                    ->searchable()
+                    ->label('Статус'),
                 TextColumn::make('created_at')
+                    ->label('Создан')
                     ->dateTime()
                     ->sortable()
                     ->toggleable(isToggledHiddenByDefault: true),
                 TextColumn::make('updated_at')
+                    ->label('Обновлен')
                     ->dateTime()
                     ->sortable()
                     ->toggleable(isToggledHiddenByDefault: true),

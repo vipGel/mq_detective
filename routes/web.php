@@ -6,7 +6,7 @@ use App\Http\Controllers\Auth\Login;
 use App\Http\Controllers\Auth\Logout;
 
 Route::get('/', function () {
-    return view('welcome');
+    return redirect('/admin');
 });
 //Route::get('/', function () {
 //    return view('home');

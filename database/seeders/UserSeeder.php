@@ -17,6 +17,7 @@ class UserSeeder extends Seeder
         User::factory()->create([
             'name' => 'Admin User',
             'email' => 'admin@admin.com',
+            //TODO get password from .env
             'password' => Hash::make('12345678'),
         ]);
 

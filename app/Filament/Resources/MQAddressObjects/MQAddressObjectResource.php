@@ -22,7 +22,8 @@ class MQAddressObjectResource extends Resource
 
     protected static ?string $recordTitleAttribute = 'name';
 
-    protected static ?string $label = 'Address Objects';
+    protected static ?string $label = 'Точка интереса';
+    protected static ?string $pluralModelLabel = 'Точки интереса';
 
     protected static string|null|\UnitEnum $navigationGroup = 'Static';
 

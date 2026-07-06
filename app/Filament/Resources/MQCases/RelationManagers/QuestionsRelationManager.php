@@ -23,22 +23,27 @@ class QuestionsRelationManager extends RelationManager
 {
     protected static string $relationship = 'mQQuestions';
 
-    protected static ?string $title = 'Questions';
+    protected static ?string $title = 'Вопросы';
 
     public function form(Schema $schema): Schema
     {
         return $schema
             ->components([
                 TextInput::make('question')
+                    ->label('Вопрос')
                     ->required(),
                 TextInput::make('answer')
+                    ->label('Ответ')
                     ->required(),
                 TextInput::make('proof')
+                    ->label('Доказательство')
                     ->required(),
                 Select::make('m_q_question_priority_id')
                     ->relationship('mQQuestionPriority', 'name')
-                    ->required()->label('Question Priority'),
+                    ->required()
+                    ->label('Тип вопроса'),
                 TextInput::make('max_points')
+                    ->label('Максимум очков')
                     ->required()
                     ->numeric(),
             ]);
@@ -48,11 +53,16 @@ class QuestionsRelationManager extends RelationManager
     {
         return $schema
             ->components([
-                TextEntry::make('question'),
-                TextEntry::make('answer'),
-                TextEntry::make('proof'),
-                TextEntry::make('mQQuestionPriority.name')->label('Question Priority'),
+                TextEntry::make('question')
+                    ->label('Вопрос'),
+                TextEntry::make('answer')
+                    ->label('Ответ'),
+                TextEntry::make('proof')
+                    ->label('Доказательство'),
+                TextEntry::make('mQQuestionPriority.name')
+                    ->label('Тип вопроса'),
                 TextEntry::make('max_points')
+                    ->label('Максимум вопрос')
                     ->numeric(),
             ]);
     }
@@ -63,14 +73,19 @@ class QuestionsRelationManager extends RelationManager
             ->recordTitleAttribute('question')
             ->columns([
                 TextColumn::make('question')
+                    ->label('Вопрос')
                     ->searchable(),
                 TextColumn::make('answer')
+                    ->label('Ответ')
                     ->searchable(),
                 TextColumn::make('proof')
+                    ->label('Доказательство')
                     ->searchable(),
                 TextColumn::make('mQQuestionPriority.name')
-                    ->sortable()->label('Question Priority'),
+                    ->sortable()
+                    ->label('Тип вопроса'),
                 TextColumn::make('max_points')
+                    ->label('Максимум очков')
                     ->numeric()
                     ->sortable(),
             ])
@@ -78,7 +93,7 @@ class QuestionsRelationManager extends RelationManager
                 //
             ])
             ->headerActions([
-                CreateAction::make()->label('Add Question'),
+                CreateAction::make()->label('Создать вопрос'),
 //                AssociateAction::make(),
             ])
             ->recordActions([

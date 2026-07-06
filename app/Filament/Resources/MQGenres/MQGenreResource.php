@@ -23,7 +23,8 @@ class MQGenreResource extends Resource
     protected static ?string $recordTitleAttribute = 'name';
     protected static string|null|\UnitEnum $navigationGroup = 'Static';
 
-    protected static ?string $label = 'Genres';
+    protected static ?string $label = 'Жанр';
+    protected static ?string $pluralModelLabel = 'Жанры';
 
 
     public static function form(Schema $schema): Schema

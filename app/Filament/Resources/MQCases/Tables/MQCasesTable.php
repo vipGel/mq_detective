@@ -16,13 +16,17 @@ class MQCasesTable
         return $table
             ->columns([
                 TextColumn::make('name')
+                    ->label('Название')
+                    ->sortable()
                     ->searchable(),
                 TextColumn::make('mQGenre.name')
+                    ->sortable()
                     ->searchable()
-                    ->label('Genre'),
+                    ->label('Жанр'),
                 TextColumn::make('author.name')
+                    ->sortable()
                     ->searchable()
-                    ->label('Author'),
+                    ->label('Автор'),
             ])
             ->filters([
                 //

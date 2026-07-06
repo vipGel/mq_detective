@@ -30,16 +30,17 @@ class NpcsRelationManager extends RelationManager
         return $schema
             ->components([
                 TextInput::make('information')
+                    ->label('Информация')
                     ->required(),
+                //TODO add tooltip
                 TextInput::make('application_path')
+                    ->label('Путь к приложению')
                     ->default(null),
-//                Select::make('address_id')
-//                    ->relationship('address', 'name')
-//                    ->required(),
                 Select::make('m_q_case_id')
                     ->relationship('mQCase', 'name')
                     ->required()
-                    ->label('Case'),
+                    ->searchable()
+                    ->label('Кейс'),
             ]);
     }
 
@@ -47,12 +48,13 @@ class NpcsRelationManager extends RelationManager
     {
         return $schema
             ->components([
-                TextEntry::make('information'),
+                TextEntry::make('information')
+                    ->label('Информация'),
                 TextEntry::make('application_path')
+                    ->label('Путь к приложению')
                     ->placeholder('-'),
-//                TextEntry::make('address.name')
-//                    ->label('Address'),
-                TextEntry::make('mQCase.name'),
+                TextEntry::make('mQCase.name')
+                    ->label('Кейс'),
             ]);
     }
 
@@ -62,28 +64,25 @@ class NpcsRelationManager extends RelationManager
             ->recordTitleAttribute('information')
             ->columns([
                 TextColumn::make('information')
+                    ->label('Информация')
                     ->searchable(),
-//                TextColumn::make('application_path')
-//                    ->searchable(),
                 TextColumn::make('mQCase.name')
-                    ->sortable()->label('Case'),
+                    ->sortable()
+                    ->label('Кейс'),
             ])
             ->filters([
                 //
             ])
             ->headerActions([
-                CreateAction::make()->label('Create NPC'),
-//                AssociateAction::make(),
+                CreateAction::make()->label('Создать нпс'),
             ])
             ->recordActions([
                 ViewAction::make(),
                 EditAction::make(),
-//                DissociateAction::make(),
                 DeleteAction::make(),
             ])
             ->toolbarActions([
                 BulkActionGroup::make([
-//                    DissociateBulkAction::make(),
                     DeleteBulkAction::make(),
                 ]),
             ]);

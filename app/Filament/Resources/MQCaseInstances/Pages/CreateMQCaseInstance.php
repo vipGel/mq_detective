@@ -16,7 +16,7 @@ class CreateMQCaseInstance extends CreateRecord
         $data['m_q_instance_state_id'] = 1;
         $name = auth()->user()->name;
         $case = MQCase::find($data['m_q_case_id']);
-        $data['name'] ??= $name . "'s " . $case->name . " game";
+        $data['name'] ??= "Игра " . $case->name . " игрока " . $name;
         return $data;
     }
 }

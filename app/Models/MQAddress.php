@@ -60,4 +60,9 @@ class MQAddress extends Model
     public function author(): BelongsTo{
         return $this->belongsTo(User::class, 'author_id');
     }
+
+    public function getLetterNumberAttribute(): string
+    {
+        return $this->letter . '-' . $this->number;
+    }
 }

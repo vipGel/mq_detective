@@ -29,6 +29,7 @@ class UsersRelationManager extends RelationManager
     }
 
     protected static string $relationship = 'users';
+    protected static ?string $title = 'Игроки';
 
 //    public function form(Schema $schema): Schema
 //    {
@@ -56,23 +57,24 @@ class UsersRelationManager extends RelationManager
             ->recordTitleAttribute('name')
             ->columns([
                 TextColumn::make('name')
+                    ->label('Имя')
                     ->searchable(),
                 TextColumn::make('email')
-                    ->label('Email address')
+                    ->label('Почта')
                     ->searchable(),
 //                TextColumn::make('email_verified_at')
 //                    ->dateTime()
 //                    ->sortable(),
-                TextColumn::make('role.name')
-                    ->searchable(),
-                TextColumn::make('created_at')
-                    ->dateTime()
-                    ->sortable()
-                    ->toggleable(isToggledHiddenByDefault: true),
-                TextColumn::make('updated_at')
-                    ->dateTime()
-                    ->sortable()
-                    ->toggleable(isToggledHiddenByDefault: true),
+//                TextColumn::make('role.name')
+//                    ->searchable(),
+//                TextColumn::make('created_at')
+//                    ->dateTime()
+//                    ->sortable()
+//                    ->toggleable(isToggledHiddenByDefault: true),
+//                TextColumn::make('updated_at')
+//                    ->dateTime()
+//                    ->sortable()
+//                    ->toggleable(isToggledHiddenByDefault: true),
             ])
             ->filters([
                 //

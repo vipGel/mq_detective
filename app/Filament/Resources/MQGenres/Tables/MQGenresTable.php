@@ -15,10 +15,13 @@ class MQGenresTable
         return $table
             ->columns([
                 TextColumn::make('name')
+                    ->label('Название')
+                    ->sortable()
                     ->searchable(),
                 TextColumn::make('author.name')
+                    ->sortable()
                     ->searchable()
-                    ->label('Author'),
+                    ->label('Автор'),
             ])
             ->filters([
                 //
