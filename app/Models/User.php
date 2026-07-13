@@ -13,6 +13,7 @@ use Illuminate\Notifications\Notifiable;
 use Illuminate\Support\Arr;
 use Laravel\Sanctum\HasApiTokens;
 use Spatie\Permission\Traits\HasRoles;
+use Spatie\Permission\Models\Role;
 
 /**
  * User class
@@ -76,7 +77,8 @@ class User extends Authenticatable
     {
         static::creating(function (User $user) {
             // Assign the role 'user' right before saving
-            $user->assignRole('Participant');
+            $role = Role::findById(2);
+            $user->assignRole($role);
         });
     }
 
