@@ -6,6 +6,7 @@ use App\Filament\Resources\MQCases\Pages\CreateMQCase;
 use App\Filament\Resources\MQCases\Pages\EditMQCase;
 use App\Filament\Resources\MQCases\Pages\ListMQCases;
 use App\Filament\Resources\MQCases\Pages\ViewMQCase;
+use App\Filament\Resources\MQCases\RelationManagers\MQAddressNpcsRelationManager;
 use App\Filament\Resources\MQCases\RelationManagers\QuestionsRelationManager;
 use App\Filament\Resources\MQCases\RelationManagers\TipsRelationManager;
 use App\Filament\Resources\MQCases\Schemas\MQCaseForm;
@@ -51,6 +52,7 @@ class MQCaseResource extends Resource
         return [
             TipsRelationManager::class,
             QuestionsRelationManager::class,
+            MQAddressNpcsRelationManager::class,
         ];
     }
 
